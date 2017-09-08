@@ -14,9 +14,9 @@ default_img: https://unsplash.it/200/300?image=999
 
 # Profile settings
 name: zhangjingbibibi
-profile_img: https://unsplash.it/200/300?image=1003
+profile_img: https://unsplash.it/200/300/?gravity=south
 profile: hello my name is zhangjing,its my pleasure to meet you~
-social: envelope-o
+social: 
 github: 
 
 # Build settings
