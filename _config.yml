@@ -14,7 +14,7 @@ default_img: https://unsplash.it/200/300?image=999
 
 # Profile settings
 name: zhangjingbibibi
-profile_img:"https://unsplash.it/200/300?image=999"
+profile_img:
 profile:zhangjing's blog
 social:
 github: 
