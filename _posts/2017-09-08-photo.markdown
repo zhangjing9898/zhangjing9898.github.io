@@ -1,4 +1,3 @@
-# photo
 ---
 layout: post
 title: "Craft Beer"
