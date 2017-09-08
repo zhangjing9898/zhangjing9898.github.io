@@ -10,11 +10,11 @@ title: zhangjing blog
 description: zhangjing9898 blog
 url: "https://zhangjing9898.github.io"
 twitter_username: zhangjingbibibi
-default_img: https://unsplash.it/200/300?image=999
+default_img: "https://unsplash.it/200/300?image=999"
 
 # Profile settings
 name: zhangjingbibibi
-profile_img:https://unsplash.it/200/300?image=999
+profile_img:"https://unsplash.it/200/300?image=999"
 profile:hello my name is zhangjing,its my pleasure to meet you~
 social:
 github: 
