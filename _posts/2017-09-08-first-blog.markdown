@@ -2,8 +2,7 @@
 layout: post
 title: "初识webpack"
 date: 2017-09-08
-categories:
-  - Juice
+categories: - Juice
 description: 前段时间有空，学习了一会儿webpack，在这里整理一番
 下面我会给出自己的GitHub，主要会有6个小demo
 image: https://unsplash.it/2000/1200?image=1000
