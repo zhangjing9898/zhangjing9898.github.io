@@ -16,8 +16,8 @@ default_img: https://unsplash.it/200/300?image=999
 name: zhangjingbibibi
 profile_img: https://unsplash.it/200/300?image=1003
 profile: hello my name is zhangjing,its my pleasure to meet you~
-social: github
-  github: 
+social: envelope-o
+github: 
 
 # Build settings
 exclude: ["_screenshots", "Gemfile", "Gemfile.lock", "LICENSE.txt", "README.md"]
