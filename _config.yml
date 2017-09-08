@@ -1,16 +1,16 @@
 # Site settings
-email: 
-baseurl: ""
+email: 1105249307@qq.com
+baseurl: "https://zhangjing9898.github.io"
 paginate: 5
 paginate_path: "/blog/page-:num"
 google_analytics: 
 
 # SEO settings
-title: Trophy
-description: 
-url: ""
-twitter_username: 
-default_img: 
+title: zhangjing blog
+description: zhangjing9898 blog
+url: "https://zhangjing9898.github.io"
+twitter_username: zhangjingbibibi
+default_img: https://unsplash.it/200/300?image=999
 
 # Profile settings
 name: 
