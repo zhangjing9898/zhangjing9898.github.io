@@ -1,0 +1,130 @@
+<h1>
+ES6 知识点总结
+</h1>
+
+<p>主要有19个小节，会贴出相对应的demo代码，也会在最后给出对应GitHub地址</p>
+
+1.let const
+<blockquote>
+/**let，const 块作用域内有效  {}内代表一块*/
+/**ES6 use strict*/
+function test() {
+    // for(let i=1;i<3;i++){
+    //     console.log(i);
+    // }
+    // console.log(i);
+    /**let 申明变量是不能重复定义*/
+    // let a= 1;
+    // let a=2;
+}
+
+function last() {
+    /*const常量不能修改(数值)  对象可以，如const k={}
+    * 申明时必须赋值
+    * */
+    const PI=3.1415926;
+    const k={
+        a:1
+    }
+    k.b=3;
+    console.log(PI,k);
+}
+
+last();
+</blockquote>
+
+2.解构赋值
+主要讲解了数组解构赋值和对象解构赋值,其他的都可以在上面拓展
+依然贴上代码:
+
+3.正则拓展
+新增了2个修饰符 y和u，下面给出代码：
+
+4.字符串拓展（上）
+Unicode编码的一些问题，贴上代码，应该去敲一遍就可以理解
+这里提醒，需要npm install babel-polyfill；得安装这么个补丁包才行
+
+5.字符串拓展（下）
+主要讲解了一些日常中实用方便的方法,老规矩贴上代码:
+
+6.数值拓展
+跟数值有关的一些小方法，仅仅码出了常用的小部分，更多请查阅
+
+7.数组拓展
+
+8.函数拓展
+箭头函数，尾调用...
+
+9.对象拓展
+
+10.Symbol的用法
+
+11.set map数据结构
+简单介绍了Set WeakSet Map WeakMap
+
+12.map-set与数组和对象的比较
+将map set与数组和object都进行了增删改查的比较
+
+13.Proxy和Reflect
+
+14.类与对象
+
+15.promise
+主要讲解了promise的原理，以及promise.all和promise.race的用法
+
+16.Iterator 和 for of
+
+17 Generator
+Generator基本定义，以及2个工作学习中常用到2个方法，长轮询和类似抽奖的一个次数记录
+
+18.Decorators
+修饰器
+
+19.模块化
+export:(2种方法，个人比较喜欢最后一种)
+<blockquote>
+//模块引用 import
+//模块导出 export
+
+// export let A=123;
+//
+// export function test() {
+//     console.log('test');
+// }
+//
+// export class Hello{
+//     test(){
+//         console.log('class');
+//     }
+// }
+
+export let A=123;
+
+export function test() {
+    console.log('test');
+}
+
+export class Hello{
+    test(){
+        console.log('class');
+    }
+}
+
+export default{
+    A,test,Hello
+}
+</blockquote>
+import:
+<blockquote>
+// import {A,test,Hello} from './class/lesson17';
+// import * as lesson17 from './class/lesson17';
+//
+// console.log(lesson17.A);
+
+import Lesson17 from './class/lesson17';
+
+console.log(Lesson17.A);
+</blockquote>
+
+在学习完ES6的基本语法后，我也去做了一个购买彩票的一个小网址，基于es6+gulp+webpack，后台用的mockjs的模拟数据
+我把es6知识点的代码跟彩票项目代码放在一起的，这个给出地址:<https://github.com/zhangjing9898/Lottery>
