@@ -16,7 +16,8 @@ default_img: https://unsplash.it/200/300?image=999
 name: zhangjingbibibi
 profile_img: https://unsplash.it/2000/1200?image=999
 profile: 前段时间一直在读Harry Potter，大概印象最深的是这句话：“Working hard is important. But there is something that matters even more, believing in yourself.” 努力很重要，然而更重要的是：相信自己。把这句分享给大家
-social: 
+social:  
+  twitter:
   
 # Build settings
 exclude: ["_screenshots", "Gemfile", "Gemfile.lock", "LICENSE.txt", "README.md"]
