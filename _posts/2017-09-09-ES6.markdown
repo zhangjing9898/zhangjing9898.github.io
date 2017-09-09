@@ -5,8 +5,8 @@ date: 2017-09-09
 categories:
   - Juice
 description: 
-image: https://unsplash.it/2000/1200?image=333
-image-sm: https://unsplash.it/2000/1200?image=333
+image: https://unsplash.it/2000/1200?random
+image-sm: https://unsplash.it/2000/1200?random
 ---
 
 <h1>
@@ -16,6 +16,7 @@ ES6 知识点总结
 <p>主要有19个小节，会贴出相对应的demo代码，也会在最后给出对应GitHub地址</p>
 
 1.let const
+<pre>
 <blockquote>
 /**let，const 块作用域内有效  {}内代表一块*/
 /**ES6 use strict*/
@@ -43,7 +44,7 @@ function last() {
 
 last();
 </blockquote>
-
+</pre>
 2.解构赋值
 主要讲解了数组解构赋值和对象解构赋值,其他的都可以在上面拓展
 依然贴上代码:
@@ -93,6 +94,7 @@ Generator基本定义，以及2个工作学习中常用到2个方法，长轮询
 
 19.模块化
 export:(2种方法，个人比较喜欢最后一种)
+<pre>
 <blockquote>
 //模块引用 import
 //模块导出 export
@@ -125,7 +127,10 @@ export default{
     A,test,Hello
 }
 </blockquote>
+</pre>
+
 import:
+<pre>
 <blockquote>
 // import {A,test,Hello} from './class/lesson17';
 // import * as lesson17 from './class/lesson17';
@@ -136,6 +141,7 @@ import Lesson17 from './class/lesson17';
 
 console.log(Lesson17.A);
 </blockquote>
+</pre>
 
 在学习完ES6的基本语法后，我也去做了一个购买彩票的一个小网址，基于es6+gulp+webpack，后台用的mockjs的模拟数据
 我把es6知识点的代码跟彩票项目代码放在一起的，这个给出地址:<https://github.com/zhangjing9898/Lottery>
