@@ -3,7 +3,7 @@ layout: post
 title: "craft-beer"
 date: 2017-09-07
 categories:
-  - Juice
+  - 日常杂记
 description: 
 image: https://unsplash.it/2000/1200?image=1003
 image-sm: https://unsplash.it/2000/1200?image=1003
