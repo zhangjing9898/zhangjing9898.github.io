@@ -1,0 +1,36 @@
+---
+layout: post
+title: "2048Game"
+date: 2016-12-20
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=34
+image-sm: https://unsplash.it/2000/1200?image=34
+---
+
+<h1>
+2048Game
+</h1>
+
+<h5>
+这是一个用js写的小游戏，2048，网页版，技术栈：js+jQuery
+</h5>
+
+<p>下面给出几张效果截图</p>
+
+<figure>
+  <img src="./image/2048-01.png" alt="Placeholder"/>
+  <figcaption>这是初始页面，点击new game可以开始游戏</figcaption>
+</figure>
+
+<figure>
+  <img src="./image/2048-02.png" alt="Placeholder"/>
+  <figcaption>这是游戏中的页面</figcaption>
+</figure>
+
+<p>操作说明：按住键盘的上下左右键，滑块即可上滑下滑，遇到数值相同滑块，会进行抵消，积分相加，如果整个棋盘被滑块填满，则游戏结束~</p>
+
+<p>快一起来玩玩吧~</p>
+
+最后，这是相关代码的GitHub地址:<https://github.com/zhangjing9898/Game2048>
