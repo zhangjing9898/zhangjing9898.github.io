@@ -10,7 +10,7 @@ image-sm: https://unsplash.it/2000/1200?image=36
 ---
 
 <h1>2016年读过的书单</h1>
-		<pre>
+<pre>
 白夜行
 皮囊
 活着
@@ -47,4 +47,4 @@ image-sm: https://unsplash.it/2000/1200?image=36
 明朝那些事（第六部）
 明朝那些事（第七部）
 海贼王（漫画）
-		</pre>
+</pre>
