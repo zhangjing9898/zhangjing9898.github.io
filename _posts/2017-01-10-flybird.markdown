@@ -1,0 +1,25 @@
+---
+layout: post
+title: "flybird"
+date: 2017-1-10
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=35
+image-sm: https://unsplash.it/2000/1200?image=35
+---
+
+<h1>
+flybird
+</h1>
+
+<h5>
+这是一个用js写的小游戏，flybird，网页版
+</h5>
+
+
+<p>操作说明：点击键盘的上键，小鸟会上升，不点会自由落体，保证小鸟不碰撞到管道，每通过一个管道会进行积分的增加</p>
+
+<p>快一起来玩玩吧~</p>
+
+最后，这是相关代码的GitHub地址:<https://github.com/zhangjing9898/Fly_brid>
