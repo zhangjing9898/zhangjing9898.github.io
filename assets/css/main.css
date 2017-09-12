@@ -1013,6 +1013,10 @@ section {
 .bg-white {
     background-color: #fff
 }
+article,section,span,time,aside,p,a{
+    margin: 0;
+    padding: 0;
+}
 .point-time {
   content: "";
   position: absolute;
