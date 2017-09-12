@@ -1,28 +1,34 @@
 <div class="tab">
-      <ul itemscope itemtype="http://schema.org/Blog">
-        {% for post in paginator.posts %}
-          <li class="preview" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-            <a class="preview__link" href="{{ post.url | prepend: site.baseurl }}" itemprop="url">
-              <span class="preview__date" itemprop="datePublished" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</span>
-              <h2 class="preview__header" itemprop="name">{{ post.title }}</h2>
-              <p class="preview__excerpt" itemprop="description">{{ post.content | strip_html | truncatewords: 20 }}</p>
-              <span class="preview__more">Read More</span>
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
+  <ul class="cards">
+    {% capture cats %}
+      {% for cat in site.categories %}
+        {{ cat | first }}
+      {% endfor %}
+    {% endcapture %}
+    {% assign sortedCats = cats | split: ' ' | sort %}
 
-      {% if paginator.total_pages > 1 %}
-        <div class="pagination">
-          {% if paginator.previous_page %}
-            <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}">Previous</a>
-          {% endif %}
+    {% for category in sortedCats %}
+      <li class="card">
+        {% assign cat_dir = site.category_dir | default: 'category' %}
+        <a class="card__link" href="{{ site.baseurl }}/{{ cat_dir }}/{{ category | downcase | slugify }}/">
+          {% for post in site.categories[category] limit: 1 %}
+            <div class="card__img">
+              {% if post.image-sm %}
+                <figure class="absolute-bg" style="background-image: url('{{ post.image-sm }}');"></figure>
+              {% else %}
+                <figure class="absolute-bg" style="background-image: url('{{ post.image }}');"></figure>
+              {% endif %}
+            </div>
+          {% endfor %}
+          <div class="card__container">
+            <h2 class="card__header">{{ category }}</h2>
+            <p class="card__count">{{ site.categories[category] | size }} Posts</p>
+            <span class="card__more">View All</span>
+          </div>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
 
-          {% if paginator.next_page %}
-            <a href="{{ paginator.next_page_path | prepend: site.baseurl }}">Next</a>
-          {% endif %}
-        </div>
-      {% endif %}
-
-      {% include archive-link.html %}
-    </div>
+  {% include archive-link.html %}
+</div>
