@@ -16,7 +16,6 @@ layout: default
     <header>
       <ul class="tabs">
         <li class="tabs__item">posts</li>
-        <li class="tabs__item">category</li>
         <li class="tabs__item">project</li>
         <li class="tabs__item">about me</li>
       </ul>
@@ -51,7 +50,9 @@ layout: default
       {% include archive-link.html %}
     </div>
 
-    {% include categories-tab.html %}
+    {% include project-tab.html %}
+    
+    {% include aboutme-tab.html %}
 
   </div>
 
