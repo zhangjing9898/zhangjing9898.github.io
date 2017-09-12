@@ -1065,7 +1065,24 @@ section {
 .point-purple {
   background-color: #d32d93;
 }
-
+text-green2{
+	color: #33CC99;
+}
+.point-green2{
+	background-color: #33CC99;
+}
+.text-blue2{
+	color: #99CCCC;
+}
+.point-blue2{
+	background-color: #99CCCC;
+}
+.text-grey{
+	color: #666666;
+}
+.point-grey{
+	background-color:#666666;
+}
 .content {
   width: 970px;
   margin: 30px auto;
