@@ -1153,7 +1153,6 @@ article,section,span,time,aside,p,a{
 }
 @media (max-width: 54em) {
 	.previews {
-		
 		display: -webkit-box;
 		display: -ms-flexbox;
 		display: flex;
@@ -1163,12 +1162,12 @@ article,section,span,time,aside,p,a{
 		flex-direction: column
 	}
 	.content {
-    margin: 0px auto;
-}
+		margin: 0px auto;
+	}
 	.content article section {
-    font-size: 12px;
-		}
-		.content article > h3 {
-    font-size: 18px;
-}
+		font-size: 12px;
+	}
+	.content article>h3 {
+		font-size: 18px;
+	}
 }
