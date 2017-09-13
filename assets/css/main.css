@@ -86,7 +86,7 @@ article,section,span,time,aside,p,a{
 	background-color:#666666;
 }
 .content {
-  width: 970px;
+  width: 90%;
   margin: 30px auto;
 }
 .content article {
