@@ -32,11 +32,30 @@ image-sm: https://unsplash.it/2000/1200?image=1003
 简单来说：
 node.js: 善于I/O 不善于计算；
 
-三、如何在cmd中运行文件：
+三、helloWorld代码
+<pre>
+<blockquote>
+
+var http = require("http");
+
+var server = http.createServer(function (req,res) {
+    res.writeHead(200,{
+        "Content-type":"text/html;charset=UTF-8"
+    });
+    res.end("我买了5个iphone"+(1+2+3)+"s");
+});
+
+//运行服务器,监听3000端口，端口号可更改
+server.listen(3000,"127.0.0.1");
+
+</blcokquote>
+</pre>
+
+四、如何在cmd中运行文件：
 node + “文件名”
 such as：C：\Users\ZJ>node d:\workspaces\node.js\demo1\01_helloWorld.js
 
-四、总结
+五、总结
 node.js是服务器的程序，写的js脚本是运行在服务器上！返回给客户的，只是纯html语句（重点提醒）
 
 ！！！node.js 可以直接运行js文件，不需要html模块的封装
