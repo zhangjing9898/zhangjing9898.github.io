@@ -33,7 +33,7 @@ image-sm: https://unsplash.it/2000/1200?image=1003
 node.js: 善于I/O 不善于计算；
 
 三、helloWorld代码
-<pre>
+
 <blockquote>
 
 var http = require("http");
@@ -49,7 +49,6 @@ var server = http.createServer(function (req,res) {
 server.listen(3000,"127.0.0.1");
 
 </blcokquote>
-</pre>
 
 四、如何在cmd中运行文件：
 node + “文件名”
