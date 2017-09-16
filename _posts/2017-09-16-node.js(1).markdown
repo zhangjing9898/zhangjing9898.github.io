@@ -48,7 +48,7 @@ var server = http.createServer(function (req,res) {
 //运行服务器,监听3000端口，端口号可更改
 server.listen(3000,"127.0.0.1");
 
-</blcokquote>
+</blockquote>
 
 四、如何在cmd中运行文件：
 node + “文件名”
