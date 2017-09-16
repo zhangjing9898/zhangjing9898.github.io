@@ -74,4 +74,20 @@ var server = http.createServer(function(req,res){
 //运行服务器，监听3000端口（端口号可以任改）
 server.listen(3000,"127.0.0.1");
 </blockquote>
+
+最后，总结：
+
+node.js本质上是没有web容器
+
+url通过了node的顶层路由设计，呈递某个静态文件
+
+举一个经典的例子：
+
+127.0.0.1:3000/yuan
+这个页面有有一个图片
+图片的源码是 <img src="0,jpg">
+那么你是不是会认为img是在127.0.0.1:3000/yuan/0.jpg
+这个认为是错误的！
+中的yuan不是文件夹，所有都处于根目录，意思是img是127.0.0.1:3000/0.jpg
+
 </pre>
