@@ -1,0 +1,47 @@
+---
+layout: post
+title: "node.js(1)"
+date: 2017-09-16
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=1003
+image-sm: https://unsplash.it/2000/1200?image=1003
+---
+
+<pre>
+一、Node.js的三大特点：
+
+1.单线程
+优点：
+让node.js宏观上并发。
+操作系统不再有线程创建、销毁的时间开销。
+坏：
+一个用户崩溃，整个服务器所有用户崩溃。
+
+2.非阻塞I/O
+相当于异步
+线程cpu核心利用率永远是100%
+
+3.事件驱动
+事件机制、事件环
+
+其实3个特点就是一个特点，少一个环节都没有办法运行
+
+二、Node.js适合开发的业务：
+简单来说：
+node.js: 善于I/O 不善于计算；
+
+三、如何在cmd中运行文件：
+node + “文件名”
+such as：C：\Users\ZJ>node d:\workspaces\node.js\demo1\01_helloWorld.js
+
+四、总结
+node.js是服务器的程序，写的js脚本是运行在服务器上！返回给客户的，只是纯html语句（重点提醒）
+
+！！！node.js 可以直接运行js文件，不需要html模块的封装
+node相当于js的执行环境
+
+总结来说：
+我们现在要跑起一个服务器，这个服务器的脚本，要以.js存储，是一个js文件，用node命令运行这个js文件罢了。
+</pre>
