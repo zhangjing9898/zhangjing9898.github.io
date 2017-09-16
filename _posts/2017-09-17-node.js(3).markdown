@@ -1,0 +1,33 @@
+---
+layout: post
+title: "node.js(3)"
+date: 2017-09-17
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=25
+image-sm: https://unsplash.it/2000/1200?image=25
+---
+
+<pre>
+
+<h1>HTTP模块</h1>
+
+node.js中，将很多的功能划分为一个个module，你想用什么就require什么。
+
+http模块中比较重要的一点就是，要记得res.end()!
+
+<blockquote>
+var http=require("http");
+
+//创建一个服务器，回调函数表示接收到请求之后做的事情
+var server = http.createServer(function (req,res) {
+    //req参数表示request，res=response
+    console.log("服务器接收到了请求:"+req.url);
+    //每一次都要res.end（）,不然loading会一直转
+    res.end("完毕")
+});
+
+server.listen(3000,"127.0.0.1");
+</blockquote>
+</pre>
