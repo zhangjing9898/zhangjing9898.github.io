@@ -699,7 +699,8 @@ section {
 	width: 90%;
 	max-width: 54em;
 	margin: 0 auto;
-	font-family: "Lora", serif
+	font-family: "Lora", serif;
+	overflow: auto;
 }
 
 @media (min-width: 54em) {
