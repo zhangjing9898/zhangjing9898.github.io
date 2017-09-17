@@ -14,7 +14,7 @@ image-sm: https://unsplash.it/2000/1200?image=25
 <p>node.js中，将很多的功能划分为一个个module，你想用什么就require什么。</p>
 
 <p>http模块中比较重要的一点就是，要记得res.end()!</p>
-
+<pre>
 <blockquote>
 var http=require("http");
 
@@ -45,4 +45,5 @@ var server = http.createServer(function (req,res) {
 
 server.listen(3000,"127.0.0.1");
   </blockquote>
+  </pre>
 
