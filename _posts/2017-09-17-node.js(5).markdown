@@ -106,7 +106,8 @@ module.export = 构造函数名;
 1var bar = require("bar"); 
 那么Node.js将会去寻找node_modules目录下的bar文件夹中的index.js去执行。
 
-每一个模块文件夹中，推荐都写一个package.json文件，这个文件的名字不能改。node将自动读取里面的配置。有一个main项，就是入口文件：
+每一个模块文件夹中，推荐都写一个package.json文件，这个文件的名字不能改。
+node将自动读取里面的配置。有一个main项，就是入口文件：
 1{
 2  "name": "kaoladebar",
 3  "version": "1.0.1",
@@ -115,7 +116,8 @@ module.export = 构造函数名;
 6
 package.json文件，要放到模块文件夹的根目录去。
 
-我们刚才学习了，模块就是一些功能的封装，所以一些成熟的、经常使用的功能，都有人封装成为了模块。并且放到了社区中，供人免费下载。
+我们刚才学习了，模块就是一些功能的封装，所以一些成熟的、经常使用的功能，都有人封装成为了模块。
+并且放到了社区中，供人免费下载。
 这个伟大的社区，叫做npm。 也是一个工具名字  node package management
 https://www.npmjs.com/
 
