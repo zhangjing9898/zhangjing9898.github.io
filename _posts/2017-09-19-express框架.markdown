@@ -8,14 +8,13 @@ description:
 image: https://unsplash.it/2000/1200?image=66
 image-sm: https://unsplash.it/2000/1200?image=66
 ---
-
-<h1>Express框架<h1>
+<pre>
+Express框架
 
 Express框架是后台的Node框架，所以和jQuery、zepto、yui、bootstrap都不一个东西。
-<br/>
+
 Express在后台的受欢迎的程度，和jQuery一样，就是企业的事实上的标准。
 
-<pre>
 ● 原生Node开发，会发现有很多问题。比如：
 
 ■ 呈递静态页面很不方便，需要处理每个HTTP请求，还要考虑304问题
