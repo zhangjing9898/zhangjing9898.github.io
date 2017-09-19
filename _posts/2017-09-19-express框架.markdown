@@ -1,0 +1,85 @@
+---
+layout: post
+title: "express框架"
+date: 2017-09-19
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=66
+image-sm: https://unsplash.it/2000/1200?image=66
+---
+
+<h1>Express框架<h1>
+<br/>
+<p>Express框架是后台的Node框架，所以和jQuery、zepto、yui、bootstrap都不一个东西。</p>
+<br/>
+<p>Express在后台的受欢迎的程度，和jQuery一样，就是企业的事实上的标准。</p>
+
+<pre>
+● 原生Node开发，会发现有很多问题。比如：
+
+■ 呈递静态页面很不方便，需要处理每个HTTP请求，还要考虑304问题
+■ 路由处理代码不直观清晰，需要写很多正则表达式和字符串函数
+■ 不能集中精力写业务，要考虑很多其他的东西
+
+</pre>
+<br/>
+<p>EXPRESS的哲学是在你的想法和服务器之间充当薄薄的一层。这并不意味着他不够健壮，或者没有足够的有用特性,而是尽量少干预你，让你充分表达自己的思想，同时提供一些有用的东西。</p>
+
+<pre>
+英语官网：<http://expressjs.com/>
+中文官网：<http://www.expressjs.com.cn/>
+
+安装Express框架，就是使用npm的命令
+<blockquote>
+npm install --save express
+</blockquote>
+--save参数，表示自动修改package.json文件，自动添加依赖项。
+
+路由功能:
+<blockquote>
+1var express = require("express");
+2
+3var app = express();
+4
+5app.get("/",function(req,res){
+6    res.send("你好");
+7});
+8
+9app.get("/haha",function(req,res){
+10    res.send("这是haha页面，哈哈哈哈哈哈");
+11});
+12
+13app.get(/^\/student\/([\d]{10})$/,function(req,res){
+14    res.send("学生信息，学号" + req.params[0]);
+15});
+16
+17app.get("/teacher/:gonghao",function(req,res){
+18    res.send("老师信息，工号" + req.params.gonghao);
+19});
+20
+app.listen(3000);
+</blockquote>
+
+静态文件能力：
+<blockquote>
+app.use(express.static("./public"));
+</blockquote>
+
+模板引擎：
+<blockquote>
+1var express = require("express");
+2
+3var app = express();
+4
+5app.set("view engine","ejs");
+6
+7app.get("/",function(req,res){
+8    res.render("haha",{
+9        "news" : ["我是小新闻啊","我也是啊","哈哈哈哈"]
+10    });
+11});
+12
+app.listen(3000);
+</blockquote>
+</pre>
