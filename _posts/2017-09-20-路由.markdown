@@ -1,0 +1,82 @@
+---
+layout: post
+title: "路由"
+date: 2017-09-20
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=67
+image-sm: https://unsplash.it/2000/1200?image=67
+---
+
+<h1>路由</h1>
+
+<pre>
+<p>当用get请求访问一个网址的时候，做什么事情： </p>
+<blockquote>
+1app.get("网址",function(req,res){
+2	
+3});
+</blackquote>
+
+<p>当用post请求访问一个网址的时候，做什么事情： </p>
+<blockquote>
+1app.post("网址",function(req,res){
+2	
+3});
+</blackquote>
+
+<p>这里的网址，不分大小写，也就是说，你路由是</p>
+<blockquote>
+1app.get("/AAb",function(req,res){
+2    res.send("你好");
+3});
+</blackquote>
+实际上小写的访问也行。
+
+<p>所有的GET参数，? 后面的都已经被忽略。 锚点#也被忽略
+你路由到/a ， 实际/a?id=2&sex=nan 也能被处理。
+正则表达式可以被使用。正则表达式中，未知部分用圆括号分组，然后可以用req.params[0]、[1]得到。</p>
+
+<p>req.params类数组对象。</p>
+<blockquote>
+1app.get(/^\/student\/([\d]{10})$/,function(req,res){
+2    res.send("学生信息，学号" + req.params[0]);
+3});
+</blackquote>
+
+<p>冒号是更推荐的写法。</p>
+<blockquote>
+1app.get("/student/:id",function(req,res){
+2    var id = req.params["id"];
+3    var reg= /^[\d]{6}$/;   //正则验证
+4    if(reg.test(id)){
+5        res.send(id);
+6    }else{
+7        res.send("请检查格式");
+8    }
+9});
+</blackquote>
+
+<p>表单可以自己提交到自己上。下面这是一段伪代码 </p>
+<blockquote>
+1app.get("/",function(req,res){
+2    res.render("form");
+3});
+4
+5app.post("/",function(req,res){
+6    //将数据添加进入数据库
+7    res.send("成功");
+8});
+</blackquote>
+
+<p>总结：</p>
+<p>
+适合进行 RESTful路由设计。简单说，就是一个路径，但是http method不同，对这个页面的使用也不同。
+</p>
+/student/345345
+
+get  读取学生信息
+add	 添加学生信息
+delete  删除学生新
+</pre>
