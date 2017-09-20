@@ -1,0 +1,80 @@
+---
+layout: post
+title: "中间件"
+date: 2017-09-20
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=70
+image-sm: https://unsplash.it/2000/1200?image=70
+---
+
+<h1>中间件</h1>
+
+<pre>
+<P>
+如果我的的get、post回调函数中，没有next参数，那么就匹配上第一个路由，就不会往下匹配了。
+如果想往下匹配的话，那么需要写next()
+</p>
+
+<blockquote>
+1app.get("/",function(req,res,next){
+2    console.log("1");
+3    next();
+4});
+5
+6app.get("/",function(req,res){
+7    console.log("2");
+8});
+</blockquote>
+
+<p>
+下面两个路由，感觉没有关系：(但是实际上冲突了，因为admin可以当做用户名 login可以当做id。)
+</p>
+<blockquote>
+1app.get("/:username/:id",function(req,res){
+2    console.log("1");
+3    res.send("用户信息" + req.params.username);
+4});
+5
+6app.get("/admin/login",function(req,res){
+7    console.log("2");
+8    res.send("管理员登录");
+9});
+</blockquote>
+
+<p>
+解决方法1：交换位置。 也就是说，express中所有的路由（中间件）的顺序至关重要。
+匹配上第一个，就不会往下匹配了。 具体的往上写，抽象的往下写。
+</p>
+<blockquote>
+1app.get("/admin/login",function(req,res){
+2    console.log("2");
+3    res.send("管理员登录");
+4});
+5
+6app.get("/:username/:id",function(req,res){
+7    console.log("1");
+8    res.send("用户信息" + req.params.username);
+9});
+</blockquote>
+
+解决方法2： 
+<blockquote>
+1app.get("/:username/:id",function(req,res,next){
+2    var username = req.params.username;
+3    //检索数据库，如果username不存在，那么next()
+4    if(检索数据库){
+5        console.log("1");
+6        res.send("用户信息");
+7    }else{
+8        next();
+9    }
+10});
+11
+12app.get("/admin/login",function(req,res){
+13    console.log("2");
+14    res.send("管理员登录");
+15});
+</blockquote>
+</pre>
