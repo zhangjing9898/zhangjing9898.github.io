@@ -17,21 +17,21 @@ image-sm: https://unsplash.it/2000/1200?image=67
 1app.get("网址",function(req,res){
 2	
 3});
-</blackquote>
+</blockquote>
 
 <p>当用post请求访问一个网址的时候，做什么事情： </p>
 <blockquote>
 1app.post("网址",function(req,res){
 2	
 3});
-</blackquote>
+</blockquote>
 
 <p>这里的网址，不分大小写，也就是说，你路由是</p>
 <blockquote>
 1app.get("/AAb",function(req,res){
 2    res.send("你好");
 3});
-</blackquote>
+</blockquote>
 实际上小写的访问也行。
 
 <p>所有的GET参数，? 后面的都已经被忽略。 锚点#也被忽略
@@ -43,7 +43,7 @@ image-sm: https://unsplash.it/2000/1200?image=67
 1app.get(/^\/student\/([\d]{10})$/,function(req,res){
 2    res.send("学生信息，学号" + req.params[0]);
 3});
-</blackquote>
+</blockquote>
 
 <p>冒号是更推荐的写法。</p>
 <blockquote>
@@ -56,7 +56,7 @@ image-sm: https://unsplash.it/2000/1200?image=67
 7        res.send("请检查格式");
 8    }
 9});
-</blackquote>
+</blockquote>
 
 <p>表单可以自己提交到自己上。下面这是一段伪代码 </p>
 <blockquote>
@@ -68,7 +68,7 @@ image-sm: https://unsplash.it/2000/1200?image=67
 6    //将数据添加进入数据库
 7    res.send("成功");
 8});
-</blackquote>
+</blockquote>
 
 <p>总结：</p>
 <p>
