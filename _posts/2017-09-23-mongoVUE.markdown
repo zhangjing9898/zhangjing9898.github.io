@@ -1,0 +1,24 @@
+---
+layout: post
+title: "mongoVUE"
+date: 2017-09-23
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=71
+image-sm: https://unsplash.it/2000/1200?image=71
+---
+
+<h1>mongoVUE</h1>
+
+
+<p>这里有一个坑，关于安装好mongoVUE之后，更新了collections，可vue中无法显示的问题,根据强大的网友，找出了破解的方法，在下面记录一番，防止自己忘记了。</p>
+<br/>
+<p>今天安装MongoDB v3.2.8后，安装了它的一个可视化工具，MongoVUE，但是在操作数据库一切正常的情况下，在MongoVUE中无法查看到collections中的文件，但是在cmd中一切操作正常，也能用find()找到刚才插入的数据。
+百度了一下，换了很多关键词，找了很久没有找到对策，最后终于发现了一条，并且成功解决了这个问题。原因是mongodb3.2版本以后默认的开启的是wiredTiger存储引擎，而之前一直使用mmavp1存储，而且两种文件不兼容。</p>
+<br/>
+<P>废话不多说，直接写具体操作:</p>
+<ul>
+  <li>1.首先将存放数据的文件夹清空，比如我放的就是c:\mongo,直接将里面的内容全部删除</li>
+  <li>2.在cmd中，进入mongodb所在的文件夹，例如我放的是c:\mongo，然后输入mongod  --storageEngine mmapv1 --dbpath c:\mongo 注意输入的是引号中的内容，注意其中的空格，以及最后的是数据存储路径,这样就可以了</li>
+</ul>
