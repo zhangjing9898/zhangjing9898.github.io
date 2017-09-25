@@ -1,0 +1,23 @@
+---
+layout: post
+title: "在cmd中kill 端口"
+date: 2017-09-25
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=85
+image-sm: https://unsplash.it/2000/1200?image=85
+---
+
+<h1>通过控制台杀死一个占用端口的进程</h1>
+
+<p>今天在写代码的时候，重开了2个3000端口，所以需要先kill掉再重开，网上的解决的方法很多，最简单有效的是重启电脑，我们也可以重启编译器，但是这个方法有时候会失效，可是重启电脑又很麻烦。这时就可以通过控制台来杀死占用端口的进程。</p>
+<br/>
+
+<p>接下来使用一个特别简单的方法，记录一哈：</p>
+<ul>
+  <li>1.首先打开控制台,输入cmd</li>
+  <li>2.输入netstat -ano|findstr 3000(端口号)</li>
+  <li>3.taskkill /pid 1780(这个数字是上一行命令结束后，显示的一行中最后一组数字，每个端口不同，LISTENING 后面的那一组数字)</li>
+  <li>4.如果提示无法终止进程，就用/f强制杀死进程：输入taskkill /f /pid 1780</li>
+</ul>
