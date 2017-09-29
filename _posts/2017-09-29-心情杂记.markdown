@@ -1,0 +1,20 @@
+---
+layout: post
+title: "心情杂记"
+date: 2017-09-29
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=134
+image-sm: https://unsplash.it/2000/1200?image=134
+---
+
+宿命也是你自己写的剧本
+<br/>
+自己选择自己要的人生
+<br/>
+信仰就是你心里的指南针
+<br/>
+God bless you会带你度过每个难关,要奋力保持往前,哪怕会脚步蹒跚
+<br/>
+所以，继续走下去吧，再差的情况也要坚持走下去
