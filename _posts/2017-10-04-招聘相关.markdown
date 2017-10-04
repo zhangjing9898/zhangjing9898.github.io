@@ -1,0 +1,20 @@
+---
+layout: post
+title: "招聘相关"
+date: 2017-10-04
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=2
+image-sm: https://unsplash.it/2000/1200?image=2
+---
+
+<h1>前端招聘整理</h1>
+<br/>
+<p>在知乎等等一系列地方，找到了各种内推或者公推的email，记录一哈，给大四找工作做准备吧</p>
+<br/>
+<ul>
+  <li>ps_recruiter@baidu.com（ 邮件标题请以“姓名-应聘XX职位-来自console”命名）。这是百度的</li>
+  <li>adwerrd@hotmail.com （猎豹）</li>
+  <li>baofen14787@gmail.com (阿里巴巴)</li>
+</ul>
