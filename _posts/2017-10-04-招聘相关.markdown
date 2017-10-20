@@ -17,4 +17,7 @@ image-sm: https://unsplash.it/2000/1200?image=2
   <li>ps_recruiter@baidu.com（ 邮件标题请以“姓名-应聘XX职位-来自console”命名）。这是百度的</li>
   <li>adwerrd@hotmail.com （猎豹）</li>
   <li>baofen14787@gmail.com (阿里巴巴)</li>
+  <li>yangyonglin@lianjia.com（链家网）</li>
+  <li>zhouqili@jd.com(注明:"前端之巅"得内推资格  京东)</li>
+  <li>liyatang@qq.com（观麦科技）</li>
 </ul>
