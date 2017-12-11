@@ -1,0 +1,23 @@
+---
+layout: post
+title: "DHC安装"
+date: 2017-12-11
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=22
+image-sm: https://unsplash.it/2000/1200?image=22
+---
+
+<h1>DHC的安装</h1>
+
+<p>前端儿们在使用ajax的时候，总会遇到需要测试get或者post请求，get还好直接在浏览器上测试，post就比较麻烦了，这里推荐一款DHC插件，挺不错的，但是需要你科学上网，也就是fanqiang才能用。</p>
+
+<p>所以这里给出3个教程，按步走下去，就可以安装成功，亲测有效</p>
+
+<ul>
+  <li>1.http://chromecj.com/web-development/2015-08/549.html    下载插件</li>
+  <li>2.http://chromecj.com/utilities/2014-09/181.html</li>
+  <li>3.第二步如果执行不成功，请参考这篇教程 http://chromecj.com/utilities/2015-04/423.html </li>
+
+</ul>
