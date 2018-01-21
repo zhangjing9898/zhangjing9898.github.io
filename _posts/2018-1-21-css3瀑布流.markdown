@@ -1,0 +1,127 @@
+---
+layout: post
+title: "css3瀑布流"
+date: 2018-01-21
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=31
+image-sm: https://unsplash.it/2000/1200?image=31
+---
+
+<p>大一的时候用css3，原生js和jQuery3中写过瀑布流效果。现在开发一个摄影网站，里面会用到瀑布流效果，我选择使用css3，因为他的性能优于js。然后遇到一个问题，图片跟底部的文字有时候会发生分离。尝试了几种办法都不行。直到！！！/p>
+
+<h4>我发现css3的一个新属性，非常好用！column-break-inside: avoid;这里的avoid:避免在元素内部断行并产生新列</h4>
+<p>这样问题就得到了解决</p>
+<p>html代码:</p>
+<code>
+<div class="gallery">
+    <div class="white-panel">
+        <img src="img/photo/1.jpg" />
+        <h1><a href="#">Title 1</a></h1>
+        <p>Description 1</p>
+    </div>
+    <div class="white-panel">
+        <img src="img/photo/2.jpg" />
+        <h1><a href="#">Title 1</a></h1>
+        <p>Description 1</p>
+    </div>
+    <div class="white-panel">
+        <img src="img/photo/3.jpg" />
+        <h1><a href="#">Title 1</a></h1>
+        <p>Description 1</p>
+    </div>
+    <div class="white-panel">
+        <img src="img/photo/4.jpg" />
+        <h1><a href="#">Title 1</a></h1>
+        <p>Description 1</p>
+    </div>
+    <div class="white-panel">
+        <img src="img/photo/5.jpg" />
+        <h1><a href="#">Title 1</a></h1>
+        <p>Description 1</p>
+    </div>
+    <div class="white-panel">
+        <img src="img/photo/6.jpg" />
+        <h1><a href="#">Title 1</a></h1>
+        <p>Description 1</p>
+    </div>
+    <div class="white-panel">
+        <img src="img/photo/7.jpg" />
+        <h1><a href="#">Title 1</a></h1>
+        <p>Description 1</p>
+    </div>
+    <div class="white-panel">
+        <img src="img/photo/8.jpg" />
+        <h1><a href="#">Title 1</a></h1>
+        <p>Description 1</p>
+    </div>
+    <div class="white-panel">
+        <img src="img/photo/9.jpg" />
+        <h1><a href="#">Title 1</a></h1>
+        <p>Description 1</p>
+    </div>
+    <div class="white-panel">
+        <img src="img/photo/10.jpg" />
+        <h1><a href="#">Title 1</a></h1>
+        <p>Description 1</p>
+    </div>
+    <div class="white-panel">
+        <img src="img/photo/11.jpg" />
+        <h1><a href="#">Title 1</a></h1>
+        <p>Description 1</p>
+    </div>
+    <div class="white-panel">
+        <img src="img/photo/12.jpg" />
+        <h1><a href="#">Title 1</a></h1>
+        <p>Description 1</p>
+    </div>
+</div>
+</code>
+
+<p>less</p>
+<code>
+.gallery{
+  width: 1000px;
+  column-width: 280px;
+  -webkit-column-width: 280px;
+  -moz-column-width: 280px;
+  -webkit-column-gap: 10px;
+  column-gap: 10px;
+  margin: 0 auto;
+  padding-top: 30px;
+  margin-bottom: 20px;
+  .white-panel{
+    display: block;
+    background: #f9f9f9;
+    border-bottom: 2px solid #c99a05;
+    padding: 8px;
+    padding-top: 20px;
+    -webkit-column-break-inside: avoid; //很重要的一个属性  avoid:避免在元素内部断行并产生新列
+    -moz-column-break-inside: avoid;
+    column-break-inside: avoid;
+    img{
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+    }
+    h1 {
+      font-size: 1em;
+    }
+    a{
+      color: #8a6d3b;
+      font-size: 18px;
+    }
+    &:hover {
+      cursor: pointer;
+      border-bottom-color: #3c99b0;
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+}
+</code>
+
+<p>最后，今天在安装sass的时候，一直出一个问题，推荐一篇博客http://blog.csdn.net/chris_ime/article/details/52013349</p>
