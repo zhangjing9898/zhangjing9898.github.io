@@ -1,0 +1,14 @@
+---
+layout: post
+title: "antd pro"
+date: 2018-01-25
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=236
+image-sm: https://unsplash.it/2000/1200?image=236
+---
+
+<p>在使用ant design pro 的时候遇到一个问题，webstorm一直报一个错误：ESLint: Expected linebreaks to be 'CRLF' but found 'LF';试过2个办法都不行，后来找到一个办法：</p>
+
+<h4>将.eslintrc文件下的"rules":{ "linebreak-style": 0,}</h4>
