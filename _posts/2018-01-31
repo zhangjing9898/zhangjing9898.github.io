@@ -1,0 +1,20 @@
+---
+layout: post
+title: ""
+date: 2018-01-31
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=221
+image-sm: https://unsplash.it/2000/1200?image=221
+---
+
+时隔半年，再次复习一下react
+
+刚刚自己画了个react生命周期图，简版：
+![react生命周期图.png](http://upload-images.jianshu.io/upload_images/3378252-6aac1c077df286c7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+顺便画了个react 技术栈的思维导图：
+![react.png](http://upload-images.jianshu.io/upload_images/3378252-5c8b7fa49eb744ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+最后再提一提web component 这是一个规范 组件主要考虑2点：1.可复用  2.可维护
