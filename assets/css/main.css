@@ -1047,6 +1047,9 @@ article,section,span,time,aside,p,a{
 .text-green2{
 	color: #33CC99;
 }
+.text-green3{
+	color:#009688
+}
 .point-green2{
 	background-color: #33CC99;
 }
@@ -1080,6 +1083,10 @@ article,section,span,time,aside,p,a{
 
 .point-purple {
   background-color: #d32d93;
+}
+
+.point-green3{
+	background-color:#009688
 }
 
 .content {
