@@ -1,6 +1,6 @@
 # Site settings
 email: 1105249307@qq.com
-baseurl: "http://39.108.15.56:8080/resume/resume-gh-pages/index.html"
+baseurl: "https://zhangjing9898.github.io"
 paginate: 5
 paginate_path: "/blog/page-:num"
 google_analytics: 
