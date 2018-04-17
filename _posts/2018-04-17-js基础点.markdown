@@ -1,0 +1,23 @@
+---
+layout: post
+title: "js基础点"
+date: 2018-04-17
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=12
+image-sm: https://unsplash.it/2000/1200?image=12
+---
+介绍js的基本数据类型﻿
+
+﻿Undefined、Null、Boolean、Number、String、 ECMAScript 2015 新增:Symbol(创建后独一无二且不可变的数据类型 )
+
+如何将字符串转化为数字，例如'12.3b'?﻿
+
+parseFloat('12.3b');
+
+Javascript作用链域?﻿
+
+﻿全局函数无法查看局部函数的内部细节，但局部函数可以查看其上层的函数细节，直至全局细节。﻿
+
+当需要从局部函数查找某一属性或方法时，如果当前作用域没有找到，就会上溯到上层作用域查找，直至全局函数，这种组织形式就是作用域链
