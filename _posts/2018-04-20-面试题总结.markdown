@@ -1,0 +1,77 @@
+---
+layout: post
+title: "面试题总结"
+date: 2018-04-20
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=36
+image-sm: https://unsplash.it/2000/1200?image=36
+---
+
+HTTP web综合问题
+
+1.Html5语义化理解
+
+用正确的标签做正确的事
+html语义化就是让页面的内容结构化，便于浏览器、搜索引擎解析
+在没有样式 CSS 情况下也可以以一种文档格式显示，可读性强
+让阅读源代码的人 更容易将网站分块 便于阅读维护理解
+2.HTML5为什么只需要写<!DOCTYPE HTML>？
+
+html5 不需要对DTD（document type definition）进行引用，但是需要doctype来规范浏览器行为
+CSS部分
+
+1.css优先级
+
+载入样式以最后载入的定位为准
+
+优先级为:!important>行内>id>class>tag>通配符>继承>默认
+
+https://blog.csdn.net/qq_28300493/article/details/52297165
+
+说说你对AMD和Commonjs的理解
+
+CommonJS是服务器端模块的规范，Node.js采用了这个规范。CommonJS规范加载模块是同步的，也就是说，只有加载完成，才能执行后面的操作。AMD规范则是非同步加载模块，允许指定回调函数
+
+AMD推荐的风格通过返回一个对象做为模块对象，CommonJS的风格通过对module.exports或exports的属性赋值来达到暴露模块对象的目的
+
+用过哪些设计模式？
+
+工厂模式
+工厂模式解决了重复实例化的问题，但还有一个问题,那就是识别问题，因为根本无法
+主要好处就是可以消除对象间的耦合，通过使用工程方法而不是new关键字
+构造函数模式
+使用构造函数的方法，即解决了重复实例化的问题，又解决了对象识别的问题，该模式与工厂模式的不同之处在于
+直接将属性和方法赋值给 this对象;
+length的巧妙用法
+
+                        var arr1=arr2=[1,2,3];
+            //清空数组
+            arr1.length=0;
+            console.log(arr1,arr2);
+            //output '' ''
+            //截断array
+            arr1.length=1;
+            console.log(arr1,arr2);
+            //output [1]
+合并数组的巧妙方法
+
+//普通方法 concat
+arr1=[1,2,3]
+[1, 2, 3]
+arr2=[4,5,6]
+[4, 5, 6]
+arr1.concat(arr2)
+[1, 2, 3, 4, 5, 6]
+//用push
+let arr1 = [1, 2, 3, 4, 5];
+let arr2 = [6, 7, 8, 9, 10];
+
+Array.prototype.push.apply(arr1, arr2);
+判断是否为数组
+
+//在es5中
+isArray方法 Boolean
+//其他方法
+array.prototype.toString=="object array"
