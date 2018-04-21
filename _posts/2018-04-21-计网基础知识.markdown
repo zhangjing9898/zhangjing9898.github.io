@@ -1,0 +1,27 @@
+---
+layout: post
+title: "计网基础知识"
+date: 2018-04-21
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=36
+image-sm: https://unsplash.it/2000/1200?image=36
+---
+
+今天看到一段文字是描写dns的，感觉写的很棒，在这里记录一下。
+
+DNS的使命
+
+DNS(Domain Name System),中文叫做域名系统。
+
+DNS的就是为了同时保留域名和IP地址的优势的产物。人们可以通过域名简单的记住要访问的web站点，而路由器等网络设备却可以使用IP地址快速定位到相关主机。DNS要做的就是当用户输入域名后，先到DNS服务器查询IP地址，然后再通过IP地址来访问web站点。
+
+从浏览器地址栏输入url到显示页面的步骤
+
+浏览器根据请求的URL交给DNS域名解析，找到真实IP，向服务器发起请求；
+服务器交给后台处理完成后返回数据，浏览器接收文件（HTML、JS、CSS、图象等）；
+浏览器对加载到的资源（HTML、JS、CSS等）进行语法解析，建立相应的内部数据结构（如HTML的DOM）；
+载入解析到的资源文件，渲染页面，完成。
+这盘文章图解http 讲解的非常的到位
+https://juejin.im/entry/587230c6ac502e006c21a6e8
