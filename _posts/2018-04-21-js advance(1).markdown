@@ -68,3 +68,25 @@ image-sm: https://unsplash.it/2000/1200?image=899
 - 有的是单进程。比如：Firefox和老版本的IE
 - 有的是多进程：比如：chrome和新版IE
 - 如何查看浏览器是否是多线程运行的呢？通过任务管理器-->查看进程
+#浏览器内核
+- 浏览器内核就是支撑浏览器运行的最核心的程序
+- 不同的浏览器 内核可能不一样 这里举几个例子
+Chrome，Safari：webkit
+firefox：Gecko
+IE：Trident
+360、搜狗等国内浏览器：Trident+webkit
+这里说一句题外话，国产浏览器称自己为双核，其实就是用了2个内核，还是比较垃圾。在正常显示网页的时候，国产浏览器使用的内核是webkit，当涉及到金钱交易的时候会把内核设置为Trident，IE的内核对安全性要求比较高。
+- 内核是由很多模块组成的，下面简单列举一下
+js引擎模块：负责js程序的编译与运行
+html，css文档解析模块：负责页面文本的解析
+DOM/CSS模块：负责dom/css在内存中的相关处理（这里相当于把解析后的文档抽象成数据结构，例如domtree cssomtree）
+布局和渲染模块：负责页面的布局和效果绘制
+以上这4个可以称为主线程。
+...还有很多模块 这里就不过多提及。
+下面说3个比较典型的3个分线程：
+定时器模块：负责定时器的管理
+Dom事件响应模块：负责事件的管理
+网络请求模块：负责ajax请求
+这里我把分线程理解为异步。
+附上一张图，简单明了：
+![image.png](https://upload-images.jianshu.io/upload_images/3378252-35a988ce46534d5e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
