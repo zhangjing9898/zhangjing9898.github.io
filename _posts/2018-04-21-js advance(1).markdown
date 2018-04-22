@@ -90,3 +90,73 @@ Dom事件响应模块：负责事件的管理
 这里我把分线程理解为异步。
 附上一张图，简单明了：
 ![image.png](https://upload-images.jianshu.io/upload_images/3378252-35a988ce46534d5e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+#定时器引发的思考
+- 1. 定时器真是定时执行的吗?
+  * 定时器并不能保证真正定时执行
+  * 一般会延迟一丁点(可以接受), 也有可能延迟很长时间(不能接受)
+```
+var start = Date.now()
+	console.log('启动定时器前...')
+	setTimeout(function() {
+		console.log('定时器执行了', Date.now() - start)
+	}, 200)
+	console.log('启动定时器后...')
+
+	// 做一个长时间的工作
+	for(var i = 0; i < 1000000000; i++) {
+
+	}
+```
+这是输出：
+![image.png](https://upload-images.jianshu.io/upload_images/3378252-d17ca3a960a1117f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+- 2. 定时器回调函数是在哪个线程执行的?
+    * 在主线程执行的, js是单线程的
+    * 这里可以这么说，先执行同步任务再执行异步任务，异步任务包括（promise的回调，dom的回调，settimeout的回调等）
+- 3. 定时器是如何实现的?
+    * 事件循环模型
+![image.png](https://upload-images.jianshu.io/upload_images/3378252-f49b0c9a78d3de4c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+#JS是单线程执行的
+- 1. 如何证明js执行是单线程的?
+  * setTimeout()的回调函数是在主线程执行的
+  * 定时器回调函数只有在运行栈中的代码全部执行完后才有可能执行
+- 2. 为什么js要用单线程模式, 而不用多线程模式?
+      * JavaScript的单线程，与它的用途有关。
+      * 作为浏览器脚本语言，JavaScript的主要用途是与用户互动，以及操作DOM。
+     * 这决定了它只能是单线程，否则会带来很复杂的同步问题。
+ 这里简单举一个例子来说明，假如js是多线程的，那么线程p1和线程p2都可以对dom进行操作，如果p1的操作是更改dom，p2的操作是删除dom，那能一边删除一边更改么- -
+- 3. 代码的分类
+   * 初始化代码
+   * 回调代码
+   这是一种分法，我也喜欢分为同步任务+异步任务
+- 4. js引擎执行代码的基本流程
+   * 先执行初始化代码: 包含一些特别  的代码   回调函数(异步执行)
+    * 设置定时器
+    * 绑定事件监听
+    * 发送ajax请求
+   * 后面在某个时刻才会执行回调代码
+```
+setTimeout(function() {
+				console.log('timeout 2222')
+				alert('22222222')
+			}, 2000)
+			setTimeout(function() {
+				console.log('timeout 1111')
+				alert('1111111')
+			}, 1000)
+			setTimeout(function() {
+				console.log('timeout() 00000')
+			}, 0)
+
+			function fn() {
+				console.log('fn()')
+			}
+			fn()
+
+			console.log('alert()之前')
+			alert('------') //暂停当前主线程的执行, 同时暂停计时, 点击确定后, 恢复程序执行和计时
+			console.log('alert()之后')
+```
+输出：
+![image.png](https://upload-images.jianshu.io/upload_images/3378252-e70af7aab71fc776.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
