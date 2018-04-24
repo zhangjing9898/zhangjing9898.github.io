@@ -1,0 +1,29 @@
+---
+layout: post
+title: "restful浅谈"
+date: 2018-04-24
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=66
+image-sm: https://unsplash.it/2000/1200?image=66
+---
+
+
+简单来说，restful就是把操作的动作交给http的对应方法来识别，get:获取，post:创建，put:更新，delete:删除。
+
+这样同一个uri可能标识多个动作。在前台处理方面，其实form表单是只支持get,和post,如果需要支持put、delete等。
+
+各个支持rest的框架应该都有处理，比如spring MVC的HiddenHttpMethodFilter就是来解决这个的，也可以ajax处理。之于这样的好处，其他的可能要在实战中体会。
+
+一般WEB应用的API会被设计成restful方式, API操作的东西叫资源, 操作的方式就是请求的方式(GET, POST, DELTE, PUT)
+
+把每一个请求看成是对资源的访问， 用一些动词表达对资源的操作（增、删、查、改)
+
+/GET/id/{id} //获取资源
+
+/POST //创建资源
+
+/PUT //更新资源
+
+/DELET/id/{id} //删除资源
