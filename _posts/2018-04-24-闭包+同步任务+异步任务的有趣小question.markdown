@@ -1,0 +1,271 @@
+---
+layout: post
+title: "闭包+同步任务+异步任务的有趣小question"
+date: 2018-04-24
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=51
+image-sm: https://unsplash.it/2000/1200?image=51
+---
+
+question 1：
+给出需求：
+需求: 点击某个按钮, 提示"点击的是第n个按钮"
+```
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>00_引入</title>
+	</head>
+
+	<body>
+
+		<button>测试1</button>
+		<button>测试2</button>
+		<button>测试3</button>
+		<script type="text/javascript">
+			var btns = document.getElementsByTagName('button')
+			//遍历加监听
+			for (var i = 0,length=btns.length; i < length; i++) {
+				  var btn = btns[i];
+				  btn.onclick = function () {
+				    console.log('第'+(i+1)+'个')
+				  }
+			}
+		</script>
+</body>
+</html>
+```
+请问这种写法为什么错误？以及当button被点击后，会打印出什么？
+```
+无论点击哪个一个按钮 都是打印出:"第4个"
+因为同步任务的优先级>异步任务优先级，for循环执行完成后，才会执行dom事件的回调函数，这时候i=3
+```
+同一个需求，加一点改变，这样呢？
+```
+for (var i = 0,length=btns.length; i < length; i++) {
+			  var btn = btns[i]
+			  //将btn所对应的下标保存在btn上
+			  btn.index = i;
+			  btn.onclick = function () {
+			    alert('第'+(this.index+1)+'个')
+			  }
+}
+```
+结果:
+```
+点第一个btn会alert 1,点第二个btn会alert 2,点第三个btn会alert 3
+在执行同步任务的时候，给每个btn加了一个下标，可以写btn.index也可以写btn.a，看个人习惯，命名而已
+```
+question2：
+这是一道比较经典的闭包面试题
+```
+<script type="text/javascript">
+			//代码片段一
+			var name = "The Window";
+			var object = {
+				name: "My Object",
+				getNameFunc: function() {
+					return function() {
+						return this.name;
+					};
+				}
+			};
+			console.log(object.getNameFunc()()); 
+			//输出 the window
+
+			//代码片段二
+			var name2 = "The Window";
+			var object2 = {
+				name2: "My Object",
+				getNameFunc: function() {
+					var that = this;
+					return function() {
+						return that.name2;
+					};
+				}
+			};
+			console.log(object2.getNameFunc()()); 
+			//输出 myobject
+			
+		</script>
+```
+question3:
+也是闭包相关面试题，稍微绕了一点点:
+```
+function fun(n, o) {
+				console.log(o);
+				return {
+					fun: function(m) {
+						return fun(m, n)
+					}
+				}
+			}
+			var a = fun(0);
+			//输出undefined
+			a.fun(1);
+			//0；
+			a.fun(2);
+			//0
+			a.fun(3);
+			//0
+			var b = fun(0).fun(1).fun(2).fun(3);
+			//输出 undefined 0 1 2 
+			
+			var c = fun(0).fun(1)  //输出 undefined 0
+			c.fun(2) //1 
+			c.fun(3) //1
+```
+------
+###如何产生闭包？
+当一个嵌套的内部（子）函数引用了嵌套的外部（父）函数的变量（函数）时，就产生了闭包
+### 闭包到底是什么?
+  * 使用chrome调试查看
+  * 理解一: 闭包是嵌套的内部函数(绝大部分人)
+  * 理解二: 包含被引用变量(函数)的对象(极少数人)
+  * 注意: 闭包存在于嵌套的内部函数中
+###产生闭包的条件?
+  * 函数嵌套
+  * 内部函数引用了外部函数的数据(变量/函数)
+```
+// 1. 将函数作为另一个函数的返回值
+			function fn1() {
+				var a = 2
+
+				function fn2() {
+					a++
+					console.log(a)
+				}
+				return fn2
+			}
+			var f = fn1()
+			f() // 3
+			f() // 4
+```
+闭包内部引用的变量，不会被作为垃圾回收
+
+------
+###闭包的作用？
+- 使用函数内部的变量在函数执行完后, 仍然存活在内存中(延长了局部变量的生命周期)
+- 让函数外部可以操作(读写)到函数内部的数据(变量/函数)
+问题:
+1. 函数执行完后, 函数内部声明的局部变量是否还存在?  一般是不存在, 存在于闭中的变量才可能存在
+2. 在函数外部能直接访问函数内部的局部变量吗? 不能, 但我们可以通过闭包让外部操作它
+```
+<script type="text/javascript">
+			function fn1() {
+				var a = 2
+				function fn2() {
+					a++
+					console.log(a)
+					// return a
+				}
+				function fn3() {
+					a--
+					console.log(a)
+				}
+				return fn3
+			}
+			var f = fn1()
+			f() // 1
+			f() // 0
+</script>
+```
+------
+###闭包的生命周期
+1. 产生: 在嵌套内部函数定义执行完时就产生了(不是在调用)
+2. 死亡: 在嵌套的内部函数成为垃圾对象时
+```
+<script type="text/javascript">
+  function fn1() {
+    //此时闭包就已经产生了(函数提升, 内部函数对象已经创建了)
+    var a = 2
+    function fn2 () {
+      a++
+      console.log(a)
+    }
+    return fn2
+  }
+  var f = fn1()
+  f() // 3
+  f() // 4
+  f = null //闭包死亡(包含闭包的函数对象成为垃圾对象)
+</script>
+```
+###闭包的应用—自定义js模块
+闭包的应用2 : 定义JS模块
+  * 具有特定功能的js文件
+  * 将所有的数据和功能都封装在一个函数内部(私有的)
+  * 只向外暴露一个包信n个方法的对象或函数
+  * 模块的使用者, 只需要通过模块暴露的对象调用方法来实现对应的功能
+
+有2种方法，先介绍第一种方法：
+```
+<script type="text/javascript" src="myModule.js"></script>
+<script type="text/javascript">
+  var module = myModule()
+  module.doSomething()
+  module.doOtherthing()
+</script>
+```
+myModule.js的内容:
+```
+unction myModule() {
+  //私有数据
+  var msg = 'My atguigu'
+  //操作数据的函数
+  function doSomething() {
+    console.log('doSomething() '+msg.toUpperCase())
+  }
+  function doOtherthing () {
+    console.log('doOtherthing() '+msg.toLowerCase())
+  }
+
+  //向外暴露对象(给外部使用的方法)
+  //如果只暴露一个可以暴露函数，如果暴露多个，可以以对象形式
+  return {
+    doSomething: doSomething,
+    doOtherthing: doOtherthing
+  }
+}
+```
+第二种方法，使用了立即执行函数，建议使用第二种方法，就没必要执行一次myModule()
+```
+<script type="text/javascript" src="myModule2.js"></script>
+<script type="text/javascript">
+  myModule2.doSomething()
+  myModule2.doOtherthing()
+</script>
+```
+myModule2.js：
+```
+(function () {
+  //私有数据
+  var msg = 'My atguigu'
+  //操作数据的函数
+  function doSomething() {
+    console.log('doSomething() '+msg.toUpperCase())
+  }
+  function doOtherthing () {
+    console.log('doOtherthing() '+msg.toLowerCase())
+  }
+
+  //向外暴露对象(给外部使用的方法)
+  window.myModule2 = {
+    doSomething: doSomething,
+    doOtherthing: doOtherthing
+  }
+})()
+```
+
+------
+###闭包的缺点以及解决
+1. 缺点
+  * 函数执行完后, 函数内的局部变量没有释放, 占用内存时间会变长
+  * 容易造成内存泄露
+2. 解决
+  * 能不用闭包就不用
+  * 及时释放
