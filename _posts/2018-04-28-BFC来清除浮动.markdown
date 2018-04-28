@@ -1,0 +1,78 @@
+---
+layout: post
+title: "BFC来清除浮动"
+date: 2018-04-28
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=56
+image-sm: https://unsplash.it/2000/1200?image=56
+---
+
+BFC 就是块级格式化上下文  想必大家都不陌生了
+
+BFC的渲染规则有4个:
+- BFC元素在垂直方向上，会发生边距重叠现象
+- BFC的区域是不会与float 浮动元素的区域发生重叠，这个主要是用于解决清除浮动，下面会用代码讲解这个
+- BFC是一个独立的容器，里面不会影响外面，外面也不会影响里面
+- BFC元素在计算高度的时候，是会把浮动元素的高度计算进去的。
+
+####说了这么多，先简单讲讲BFC如何清除浮动的吧
+```
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clear float</title>
+    <style type="text/css">
+        .container{
+            margin: 30px auto;
+            width:600px;
+            height: 300px;
+        }
+        .p{
+            border:solid 3px #a33;
+        }
+        .c{
+            width: 100px;
+            height: 100px;
+            background-color: #060;
+            margin: 10px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="p">
+            <div class="c"></div>
+            <div class="c"></div>
+            <div class="c"></div>
+        </div>
+    </div>
+</body>
+</html>
+```
+
+运行出来的效果是这样的:
+
+![image.png](https://upload-images.jianshu.io/upload_images/3378252-a661b300cb089931.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+因为浮动元素是脱离文档流的，不占文档流的位置，所以这里的上下边距最后重合了，怎么解决这个问题呢？
+
+在这里引用BFC的第二点渲染规则   BFC区域是不会与浮动元素区域重叠的  
+
+```
+.p{
+            border:solid 3px #a33;
+            overflow: hidden;
+  }
+```
+
+这时候，我们将p设置为BFC后，效果如下:
+
+![image.png](https://upload-images.jianshu.io/upload_images/3378252-a863b28fa322e2ec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+
+from:https://www.cnblogs.com/dolphinX/p/3508869.html
