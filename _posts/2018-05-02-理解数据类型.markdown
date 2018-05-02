@@ -1,0 +1,74 @@
+---
+layout: post
+title: "理解数据类型"
+date: 2018-05-02
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=72
+image-sm: https://unsplash.it/2000/1200?image=72
+---
+
+很多时候，我们都用到了数据，却没能完全理解他的一些类型，这里总结一下常见的容易错的点。
+
+- 分类（2大类）
+  * 基本值类型
+      * Number:任意数值
+      * String:任意文本
+      * Boolean:true/false
+      * undefined:undefined
+      * null:null
+  * 对象（引用）类型
+    * Object：一般对象类型
+    * Array：特别的对象类型（下标/内部数据有序）
+    * Function：特别的对象类型（可执行，类似于foo(),这里的()相当于执行标识符）
+
+- 判断
+   * typeof:
+        * 可以区别：数值、字符串、布尔值、undefined、function
+        * 不能区分：null与对象，一般对象与数组
+   * instanceof
+      * 专门用来判断对象数据的类型：Object、Array与Function
+    * ===
+        * 可以判断undefined和null
+-------------
+- undefined与null的区别？
+     * undefined代表只申明了没有赋值
+     * null代表赋值了, 只是值为null
+
+- 什么时候给变量赋值为null呢？
+  * var a=null  //a将指向一个对象，但是对象此时还没确定
+  * a=null  //让a指向的对象变成垃圾对象
+
+- 严格区别变量类型与数据类型？
+  * js的变量本身是没有类型的，变量的类型实际上是变量内存中的数据的类型
+  * 变量类型：
+      * 基本类型：保存基本类型数据的变量
+      * 引用类型：保存对象地址值的变量
+   * 数据对象
+      * 基本类型
+      *  对象类型
+
+这里我想简单引申一下堆和栈的概念，一般来说栈里面是保存2个东西：1.全局变量 2.局部变量 ；但是在堆里面只保存对象。
+
+简单代码演示:
+```
+// 1. undefined与null的区别?
+  var a1
+  var a2 = null
+  console.log(a1, a2)
+	//输出 undefined null
+	
+  // 2. 什么时候给变量赋值为null呢?
+    //初始
+  var a3 = null
+    //中间
+  var name = 'Tom'
+  var age = 12
+  a3 = {
+    name: name,
+    age: age
+  }
+    //结束
+  a3 = null
+```
