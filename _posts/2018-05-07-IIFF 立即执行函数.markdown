@@ -1,0 +1,41 @@
+---
+layout: post
+title: "IIFF 立即执行函数"
+date: 2018-05-07
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=76
+image-sm: https://unsplash.it/2000/1200?image=76
+---
+- 理解
+  * 全称：Immediately-Invoked Function Expression
+- 作用
+  * 隐藏实现
+  * 不会污染外部（全局）命名空间
+  * 用它来编码js模块
+```
+ (function () { //匿名函数自调用
+    var a = 3
+    console.log(a + 3)
+  })()
+  //输出 6
+  var a = 4
+  console.log(a)
+//输出4
+
+  ;(function () {  //这里加一个;  是因为前面console.log（a）后面没有；
+    var a = 1
+    function test () {
+      console.log(++a)
+    }
+    window.$ = function () { // 向外暴露一个全局函数
+      return {
+        test: test
+      }
+    }
+  })()
+
+  $().test() // 1. $是一个函数 2. $执行后返回的是一个对象
+//输出 2
+```
