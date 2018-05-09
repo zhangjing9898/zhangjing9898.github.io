@@ -1,0 +1,64 @@
+---
+layout: post
+title: "原型链"
+date: 2018-05-09
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=78
+image-sm: https://unsplash.it/2000/1200?image=78
+---
+
+- 原型链
+ * 访问一个对象的属性时:
+    * 先在自身属性中查找，找到返回
+    * 如果没有，再沿着__proto__这条链向上查找，找到返回
+    * 如果最终没找到，返回undefined
+  * 别名:隐式原型链
+  * 作用:查找对象的属性（方法）
+- 构造函数/原型/实体对象的关系（图解）
+var o1=new Object();
+var o2={};
+![image.png](https://upload-images.jianshu.io/upload_images/3378252-f5170c26c51567a3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+- 构造函数/原型/实体对象的关系2（图解）
+function Foo(){}
+![image.png](https://upload-images.jianshu.io/upload_images/3378252-20b8a9932f85f724.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+```
+// console.log(Object)
+//console.log(Object.prototype)
+console.log(Object.prototype.__proto__)    //输出null
+  function Fn() {
+    this.test1 = function () {
+      console.log('test1()')
+    }
+  }
+  console.log(Fn.prototype);
+  Fn.prototype.test2 = function () {
+    console.log('test2()')
+  }
+  var fn = new Fn()
+  fn.test1()
+  fn.test2()
+  console.log(fn.toString())
+  console.log(fn.test3)
+  // fn.test3()
+
+```
+![原型链分析.png](https://upload-images.jianshu.io/upload_images/3378252-0c1ed7c178bbe6a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+ ```
+  /*
+  1. 函数的显示原型指向的对象默认是空Object实例对象(但Object不满足)
+   */
+  console.log(Fn.prototype instanceof Object) // true
+  console.log(Object.prototype instanceof Object) // false
+  console.log(Function.prototype instanceof Object) // true
+  /*
+  2. 所有函数都是Function的实例(包含Function)
+  */
+  console.log(Function.__proto__===Function.prototype)
+  /*
+  3. Object的原型对象是原型链尽头
+   */
+  console.log(Object.prototype.__proto__) // null
+```
