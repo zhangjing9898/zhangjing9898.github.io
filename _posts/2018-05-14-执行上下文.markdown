@@ -1,0 +1,46 @@
+---
+layout: post
+title: "执行上下文"
+date: 2018-05-14
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=80
+image-sm: https://unsplash.it/2000/1200?image=80
+---
+
+- 代码分类（位置）
+    * 全局代码
+    * 函数（局部）代码
+- 全局执行上下文
+  * 在执行全局代码前window确定为全局执行上下文
+  * 对全局数据进行预处理
+    * var定义的全局变量==>undefined，添加为windo属性
+    * function声明的全局函数==>赋值（fun），添加为window的方法
+    * this  ==> 赋值（window）
+  * 开始执行全局代码
+- 函数执行上下文
+  * 在调用函数，准备执行函数体之前，创建对应的函数执行上下文对象（虚拟的，存在于栈中）
+  * 对局部数据进行预处理
+    * 形参变量==>赋值（实参）==>添加为执行上下文的属性
+    * arguments==>赋值（实参列表）,添加为执行上下文的属性
+    * var定义的局部变量==>undefined，添加为执行上下文的属性
+    * function声明的函数==>赋值（fun），添加为执行上下文的方法
+    * this==>赋值（调用函数的对象）
+* 开始执行函数体代码
+
+```
+ console.log(a1, window.a1)
+  //输出undefined undefined
+  window.a2()
+  //输出 a2()
+  console.log(this)
+//输出window
+
+  var a1 = 3
+  function a2() {
+    console.log('a2()')
+  }
+  console.log(a1)
+  //输出 3
+```
