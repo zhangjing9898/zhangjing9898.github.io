@@ -117,4 +117,21 @@ image-sm: https://unsplash.it/2000/1200?image=81
   }
   show(fn);
 //输出10
+
+
+  var fn = function () {
+    console.log(fn)
+  }
+  fn()
+//输出  function（）{console.log（fn）}
+  var obj = {
+    fn2: function () {
+//  	console.log(this===obj);     //true
+//   console.log(fn2)			//fn2 is not defined
+//     console.log(this.fn2)   //function(){console.log(this.fn2)}
+			console.log(obj.fn2);			//function(){console.log(this.fn2)}
+    }
+  }
+  obj.fn2()
+  //输出  见上面
 ```
