@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "React基础"
-date: 2018-05-23
+title: "React中的“ajax”"
+date: 2018-05-24
 categories:
   - Juice
 description: 
-image: https://unsplash.it/2000/1200?image=82
-image-sm: https://unsplash.it/2000/1200?image=82
+image: https://unsplash.it/2000/1200?image=83
+image-sm: https://unsplash.it/2000/1200?image=83
 ---
 
 - React没有ajax模块
