@@ -1,0 +1,78 @@
+---
+layout: post
+title: "React中ref详解+例子"
+date: 2018-05-26
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=85
+image-sm: https://unsplash.it/2000/1200?image=85
+---
+
+- 组件实例对象的3大属性之二: refs属性
+  * 组件内的标签都可以定义ref属性来标识自己
+  * 在组件中可以通过this.refs.refName来得到对应的真实DOM对象
+  * 作用: 用于操作指定的ref属性的dom元素对象(表单标签居多
+   ```
+  <input ref='username' />
+   ```
+  * this.refs.username //返回input对象
+
+#事件处理
+- 通过onXxx属性指定组件的事件处理函数(注意大小写)
+  * React使用的是自定义(合成)事件, 而不是使用的DOM事件
+  * React中的事件是通过委托方式处理的(委托给组件最外层的元素)
+- 通过event.target得到发生事件的DOM元素对象
+```
+<input onFocus={this.handleClick}/>
+    handleFocus(event) {
+      event.target  //返回input对象
+    }
+```
+#强烈注意
+- 组件内置的方法中的this为组件对象
+- 在组件中自定义的方法中的this为null
+  * 强制绑定this
+  * 箭头函数(ES6模块化编码时才能使用)
+
+问题: 如何给一个函数强制指定内部的this?
+
+```
+   /*
+    需求: 自定义组件, 功能说明如下:
+      1. 界面如果页面所示
+      2. 点击按钮, 提示第一个输入框中的值
+      3. 当第2个输入框失去焦点时, 提示这个输入框中的值
+    */
+    class RefsTest extends React.Component {
+      constructor (props) {
+       super(props);
+
+        this.showMsg = this.showMsg.bind(this); // 强制给showMsg()绑定this(组件对象)
+        this.handleBlur = this.handleBlur.bind(this);
+      }
+
+      showMsg() {
+        // console.log(this); //this默认是null, 而不组件对象
+        const input = this.refs.msg;
+        alert(input.value);
+      }
+
+      handleBlur(event) {
+        const input = event.target;
+        alert(input.value);
+      }
+
+      render () {
+        return (
+          <div>
+            <input type="text" ref="msg"/>
+            <button onClick={this.showMsg}>提示输入数据</button>
+            <input type="text" placeholder="失去焦点提示数据" onBlur={this.handleBlur}/>
+          </div>
+        );
+      }
+    }
+
+    ReactDOM.render(<RefsTest/>, document.getElementById('example'));
+```
