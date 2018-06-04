@@ -1,0 +1,78 @@
+---
+layout: post
+title: "React的key相关知识"
+date: 2018-06-04
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=90
+image-sm: https://unsplash.it/2000/1200?image=90
+---
+
+我们在map遍历的很适合，很多时候都要在虚拟dom上加上一个key值，大多数都直接用的index作为key值，这里来讨论一点。
+
+#### 为什么列表的key尽量不要用index
+这里给出2篇参考:
+- http://jsbin.com/wohima/edit?js,output
+- http://taobaofed.org/blog/2016/08/24/react-key/?utm_source=tuicool&utm_medium=referral
+
+简单来说：当数组中的数据发生变化时：React会比较更新前后的元素Key值，如果相同则更新，如果不同则销毁之前的，重新创建一个。
+
+一个小例子:
+```
+ function ListItem({id, name, age}) {
+    return <li>{id}--{name}--{age}---<input type="text"/></li>;
+  }
+
+  class PersonList extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        persons: [
+          {id: 1, name: 'Tom', age: 12},
+          {id: 2, name: 'Jack', age: 13}
+        ]
+      };
+      this.update = this.update.bind(this);
+    }
+
+    update() {
+      let persons = this.state.persons;
+      persons.unshift({id: 3, name: 'Bob', age: 14})
+      this.setState({persons})
+    }
+    render() {
+      const persons = this.state.persons;
+      const listItems = persons.map((person, index) =>
+          <ListItem key={person.id} {...person}/>
+      );
+      const listItems2 = persons.map((person, index) =>
+              <ListItem key={index} {...person}/>
+      );
+      return (
+          <div>
+            <h2>使用id作为key</h2>
+            <ul>
+              {listItems}
+            </ul>
+
+            <h2>使用index作为key</h2>
+            <ul>
+              {listItems2}
+            </ul>
+            <button onClick={this.update}>首位添加一个人</button>
+          </div>
+      );
+    }
+  }
+
+  ReactDOM.render(
+      <PersonList/>,
+      document.getElementById('root')
+  );
+```
+输出：
+![image.png](https://upload-images.jianshu.io/upload_images/3378252-03e767745962728d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+添加了一个人之后:
+![image.png](https://upload-images.jianshu.io/upload_images/3378252-de18579312efdf7f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
