@@ -1,0 +1,77 @@
+---
+layout: post
+title: "高阶组件"
+date: 2018-06-05
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=91
+image-sm: https://unsplash.it/2000/1200?image=91
+---
+
+# 高阶组件
+
+先来引入这个概念
+
+### 高阶函数是什么？
+高阶函数就是一个函数返回一个函数
+eg：
+```
+let fn=()=>()=>()=>{}
+```
+### 高阶组件 类同
+高阶组件就是一个组件返回一个新的组件
+
+组件分类：函数组件 or 类组件
+
+比如：2个组件中有大量重复的代码，我们就可以尝试写一个函数，通过传入一些东西，然后返回一个组件（那个组件里有我们想要的那些东西）
+
+可以把高阶组件理解成 把一个组件包装一哈
+
+下面写一个简单的高阶组件public:
+```
+export default public("username")（username） //public是一个函数，执行2次后，返回一个组件
+```
+
+其他组件想用这个，先导入:
+```
+import local from "./public";
+```
+这里加一个username组件的核心代码:
+```
+return (
+    <div>
+        <input type="text" value={this.props.username}/>
+    </div>
+)
+```
+public.js:
+```
+let local=(key)=>(Component)=>{
+    //返回一个组件
+  return class HeightOrderComponent extends React.Component{
+        //这里传进来的key是一个属性，加一个[]可以变成变量
+  constructor(props){
+            super(props);
+            this.state={[key]:""}
+        }
+        componentWillMount(){
+            //将要渲染的时候  从缓冲中读取出来  给状态设置
+  let val=localStorage.getItem([key]);
+            this.setState({[key]:val})
+        }
+        render(){
+            // return <Component {...this.state}/>
+  return (
+                <div>
+                    <input type="text" value={this.props.username}/>
+                </div>
+            )
+        }
+    }
+}
+```
+
+
+
+
