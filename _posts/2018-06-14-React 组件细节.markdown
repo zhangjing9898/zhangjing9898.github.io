@@ -1,0 +1,60 @@
+---
+layout: post
+title: "React 组件细节"
+date: 2018-06-14
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=94
+image-sm: https://unsplash.it/2000/1200?image=94
+---
+
+# 组件
+###1.注意事项
+- 组件内部定义的所有方法应该是组件实例对象的（this）
+- 组件的内置方法的this指向实例对象，自定义方法的this指向null
+针对上面所说的2点，我举一个很简单的例子:
+```
+ constructor(props) {
+      super(props)
+      this.state = {
+        msg: 'atguigu'
+      }
+      this.handleChange = this.handleChange.bind(this)
+    }
+```
+这里的this就是组件的实例对象，这里为什么要用bind，不用call和apply，是因为bind是绑定后，返回一个函数。bing 返回的是一个新的函数，你必须调用它才会被执行。
+然而call和apply是直接就调用了。
+- 脚手架中可以利用箭头函数
+###2.定义组件的方法
+- 工厂函数式（无状态--简单组件）
+```
+function Welcome1(props) {
+		
+        return <h2>工厂函数式创建的组件</h2>
+    }
+
+
+* 使用props属性对象的时候可以通过形参获取
+```
+
+- ES6的class类的方法（有状态--较为复杂组件）
+```
+class Welcome2 extends React.Component{
+        render(){
+            console.log(this instanceof Welcome2, this);
+           return <h3>ES6的类class创建的组件</h3>
+        }
+    }
+
+
+	* 注意继承react核心组件库
+```
+- ES5的老语法（了解即可）
+```
+var Welcome3 = React.createClass({
+        render () {
+            return <h1>ES5D的老语法</h1>
+        }
+    }）；
+```
