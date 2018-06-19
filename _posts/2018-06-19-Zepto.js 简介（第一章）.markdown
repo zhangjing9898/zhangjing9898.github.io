@@ -1,0 +1,59 @@
+---
+layout: post
+title: "Zepto.js 简介（第一章）"
+date: 2018-06-19
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?random
+image-sm: https://picsum.photos/200/200/?random
+---
+
+# Zepto.js 简介（第一章）
+
+在做C端-H5的时候，很多时候会用到Zepto.js，所以在这里，我就把它整理一下。
+
+### 什么是Zepto
+
+- zepto是轻量级的JavaScript库，专门为移动端定制的框架
+- 与jquery有着类似的API，俗称：会jquery就会用zepto
+
+### Zepto的特点
+
+- 针对移动端
+- 轻量级，压缩版本只有8kb左右
+- 响应，执行快
+- 语法，API大部分同jquery一样，学习难度低，上手快
+- 目前API完善的框架中体积最小的一个
+
+### Zepto官网
+- http://zeptojs.com/
+- https://github.com/madrobby/zepto
+
+----
+
+很多人都了解zepto跟jQuery有很多相同的地方，在这里，我就专门列出一个专题，来写一下，zepto和jQuery的异同。
+
+## Zepto和jQuery的异同
+
+### 相同点
+
+- 都是优秀的js函数库
+- 语法，API大部分都一样（zepto是按照jquery的思路来设计的）
+- 如果非要说一个包含关系的话，可以这样认为：zepto相当于jquery的子集
+- 同jquery一样都是以$为核心函数
+
+### 不同点
+#### jQuery
+- 针对的更多的是PC端
+- 体积较重
+- API较为完善
+
+#### Zepto
+- 针对的是移动端
+- 体积较轻 （压缩后的大小还不到1M 比一张图片的大小都还要小很多很多）
+- 有自己独特的移动端事件
+
+
+
+
