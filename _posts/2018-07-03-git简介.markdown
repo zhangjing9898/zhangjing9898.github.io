@@ -1,0 +1,23 @@
+---
+layout: post
+title: "git简介"
+date: 2018-07-03
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?random
+image-sm: https://picsum.photos/200/200/?random
+---
+
+# git命令记录
+
+## 提交：
+- 第一步：更改之后，切换到该目录下，输入shell：git add .
+- 第二步：提交commit：git commit -m 我更改了xxx
+- 第三步：push：git push xxx（reportery ssh 地址）
+----
+## 分支：
+- 切换到master：git checkout master
+- git pull origin master 
+- git push xxx(reportery ssh 地址)
+
