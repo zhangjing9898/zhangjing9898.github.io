@@ -1,3 +1,14 @@
+---
+layout: post
+title: "git简介"
+date: 2018-07-03
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=94
+image-sm: https://unsplash.it/2000/1200?image=94
+---
+
 # git命令简介
 
 ## 提交：
