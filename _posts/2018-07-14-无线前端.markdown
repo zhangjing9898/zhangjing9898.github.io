@@ -1,0 +1,165 @@
+---
+layout: post
+title: "无线前端"
+date: 2018-07-14
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=96
+image-sm: https://picsum.photos/200/200/?image=96
+---
+
+#  无线前端 记录
+
+实习的过程中，主要接触的是无线前端的开发，现在就在这里简单总结一下。
+
+## 1.H5方面
+
+#### 1.什么是H5?
+- HTML最新的修订版本， 2014年10月由W3C完成标准制定
+- 在开头直接使用 <!DOCTYPE HTML>
+
+#### 2.什么是!DOCTYPE HTML
+- 位于标签之前，告知浏览器使用了哪种HTML版本
+- HTML4.01 需要声明引用DTD（文档类型声明），因为 HTML 4.01 是基于 SGML Standard Generalized Markup Language , 确保了浏览器能够正确的渲染内容。
+- HTML4.01三种模式 Strict、Transitional 和 Frameset Strict: 包括HTML元素和属性，不包括过时元素，框架集不行 Transitional : 框架集不行 Frameset /
+- HTML5 不基于SGML, 不需要DTD
+
+#### 3.H5新特性
+- canvas svg
+- audio video
+- localstorage sessionstorage
+- websocket
+- 客户端数据库
+- history (用于路由)
+- work thread
+- 地理位置信息
+- 可读性 新增元素 artic、footer、header、nav、section
+- 新的表单控件和输入类型验证，eg：calendar、date、time、email、url、search
+- 移除元素 frame、frameset、big、center、font、s、strike、tt、u
+
+#### 4.canvas和svg
+ - canvas：
+ - html中：<canvas id=“myCanvas”></canvas>
+ - js中：
+
+ ```
+ var c=document.getElementById("myCanvas");
+ var ctx=c.getContext("2d");
+ ctx.fillStyle="#FF0000";
+ ctx.fillRect(0,0,150,75);
+ ```
+ 
+ - svg:可伸缩矢量图(直译过来就是：放在哪都可以用，它自动缩放大小) 
+    * XML 格式定义图形，放大改变尺寸同时图片的质量不会有所损坏
+
+ - canvas pk svg
+
+| canvas | svg  | 
+| - | :-: | 
+| js绘制 | xml绘制 | 
+| 分辨率相关 | 分辨率无关  | 
+| 不支持事件处理 | 支持事件处理 |
+| 改变需要擦除重绘 |  |
+
+#### 5.audio和video
+
+```
+<audio controls>
+    <source src="horse.ogg" type="audio/ogg">
+    <source src="horse.mp3" type="audio/mpeg">
+</audio>
+
+<video width="320" height="240" controls>
+    <source src="movie.mp4" type="video/mp4">
+     <source src="movie.ogg" type="video/ogg">
+</video>
+//具体api可参考菜鸟教程中的介绍
+```
+
+#### 6.地理位置
+- android：gps定位，wifi定准，基站定位，AGPS定位
+- 地理位置（Geolocation）是 HTML5 的重要特性之一，提供了确定用户位置的功能，借助这个特性能够开发基于位置信息的应用。
+- 调用相关的函数API或者注册监听事件
+- 可获取精度、纬度、海拔等等
+```
+navigator.geolocation
+getCurrentPosition()
+watchPosition()
+clearWatch
+pos.coords.latitude
+pos.coords.longitude
+pos.coords.accuracy
+pos.coords.altitude
+pos.coords.speed
+<script>
+    var x=document.getElementById("demo");
+    unction getLocation()
+    {
+         if (navigator.geolocation)
+             {  
+             navigator.geolocation.getCurrentPosition(success,error,ops);
+                  }
+    }
+    function success(pos)
+    …
+</script>
+```
+详情可参考[这篇blog](http://www.php.cn/html5-tutorial-384661.html)
+
+#### 7.History
+
+- location.hash 和 hashchange事件
+- history.pushState(),popstate()
+
+#### 8.LocalStorage vs sesstionStorage vs cookie
+
+| LocalStorage | seestionStorage  | cookie |
+| :-: | :-: | :-: |
+| 不会自动把数据发给服务器，仅在本地保存  | 同 ls | 标示用户身份而存储本地中，会在browser和server中来回传递 | 
+| 比cookie大得多，可以达到5M或更大 | 同ls  | cookie数据大小不能超过4k。 |
+| 存储永久 | 浏览器关闭后删除 | 过期时间前有效 |
+
+#### 9.work workers
+
+- web workers是HTML5提供的一个JavaScript多线程解决方案，具体可以参考我写的这篇[博客](https://www.jianshu.com/p/c8b07ab0fd09)
+
+#### 10.websocket和socket.io
+
+- 可以先参考我写的这篇[博客](https://www.jianshu.com/p/d13ba23826d3)
+- WebSocket 安全方案，允许客户端代码在客户端和支持WebSocket协议的服务器端创建双向的套接字类型
+
+#### 11.文件系统
+
+- 简单来说就是对文件进行操作，我在网上看到一篇blog，写的还不错，点[这里](https://blog.csdn.net/salonzhou/article/details/28275713)
+
+#### 12.离线缓存
+
+- 在用户没有与因特网连接时，可以正常访问站点或应用，在用户与因特网连接时，更新用 户机器上的缓存文件
+- 原理：HTML5的离线存储是基于一个新建的.appcache文件的缓存机制 通过这个文件上的解析清单离线存储资源，这些资源就会像cookie一样被存储了下来。 之后当网络在处于离线状态下时，浏览器会通过被离线存储的数据进行页面展示。
+- 详细可参考这篇[blog](https://blog.csdn.net/u013084331/article/details/51133052)
+
+## 2.无线前端工具+框架
+
+1. npm：node package manager，是一个nodejs包管理和分发的工具。
+2. tnpm：阿里内部 npm 及 源 npm 镜像，完整 npmjs.org 镜像，你可以用此代替官方版本(只读)，同步频率目前为 10分钟 一次以保证尽量与官方服务同步。
+3. react：React 是一个 Facebook 和 Instagram 用来创建用户界面的 JavaScript 库。 React 是为了解决一个问题：构建随着时间数据不断变化的大规模应用程序.
+4. React Native :React Native 结合了 Web 应用和 Native 应用的优势，可以使用 JavaScript 来开发 iOS 和 Android 原生应用。在 JavaScript 中用 React 抽象操作系统原生的 UI 组件，代替 DOM 元素来渲染等
+5. flux :Flux是Facebook用来构建用户端的web应用的应用程序体系架构。它通过利用数据的单向流动为React的可复用的视图组件提供了补充。相比于形式化的框架它更像是一个架构思想，不需要太多新的代码你就可以马上使用Flux构建你的应用
+6. `ant desgin`：蚂蚁出的ui组件库，可以大大提高我们的开发效率
+    - ant desgin pro:用于搭建中后台的cms
+    - ant desgin mobie：用于移动端，无线前端
+    - ant desgin h5:antd出了针对h5的组件库
+7. yocto：组里用的就是yocto  
+    - yocto基于zepto，大多数api与zepto保持一致
+    - yocto的core精简了不常用的API，去除了不必要的逻辑，深度优化了性能
+    - 可参考这篇[readme](http://gitlab.alibaba-inc.com/animajs/yocto) 讲的非常的好
+8. HPM：全称hybrid-app package manager and developing
+kit.
+    - 好不好用，自己安装尝试一把就了解了。这是安装[地址](http://hpm.h5.alipay.net/)
+9. atool-build：readme利器，hh
+    - 基于webpack实现
+    - 支持通过webpack.config.js进行扩展相关配置项
+    - 支持typescript
+    - [readme](https://github.com/ant-tool/atool-build)放在这里，可亲测一次
+
