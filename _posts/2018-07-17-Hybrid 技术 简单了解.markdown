@@ -1,0 +1,148 @@
+---
+layout: post
+title: "Hybrid 技术 简单了解"
+date: 2018-07-17
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=97
+image-sm: https://picsum.photos/200/200/?image=97
+---
+
+## hybrid交互
+
+1. JavaScript core == js bridge
+2. url schema
+
+这里有一张图可以简单说明：
+![detail](https://upload-images.jianshu.io/upload_images/3378252-99b7d4e57413b849.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+其实Hybrid的交互无非就2种方法：
+
+- native调用前端页面中js方法
+- 前端页面通过js调用native提供的接口
+
+`2个交互的bridge都是webview`
+
+![image.png](https://upload-images.jianshu.io/upload_images/3378252-a10d0fed8dca91f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+从第一个开始讲解：web和native约定好，然后h5将一组api绑定在window对象上，app通过webview获取window对象然后调用js。这就是最初说的**native调用页面中js的方法**
+
+第二个：web传递一个url，然后native那边可以截断url，通过url中的schema进行解析，然后做出相应的操作
+
+然后app自身是可以自定义url schema的，并把自定义的url注册在调度中心，比如：
+
+- weixin:// 打开微信
+- ctrip：//xx  打开携程
+
+js与native通信：创建这类url，native将其捕获，然后进行操作。
+
+### api式交互
+
+native api接口和ajax调用服务器提供的接口非常相似
+
+![image.png](https://upload-images.jianshu.io/upload_images/3378252-438484e7600dd71f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+然后接下来这张图可以清楚的展示我们在设计hybrid交互模型的时候，通信的流程：
+
+![image.png](https://upload-images.jianshu.io/upload_images/3378252-a3f0bcf34c210847.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+### 格式约定
+
+前面说了这个流程和ajax比较相似，这里就按照ajax做一个参考。
+
+`
+$.ajax(options)  =>  XMLHttpRequest
+type(default val：“get”)  http请求方法（“get”，“post”，其他）
+url(default val：当前url)  请求url的地址
+data(default val：none)
+`
+
+与native约定的请求模型：
+```
+requestHybrid({
+  //创建一个新的webview对话框窗口
+  tagname: 'hybridapi',
+  //请求参数，会被Native使用
+  param: {},
+  //Native处理成功后回调前端的方法
+  callback: function (data) {
+  }
+});
+```
+
+这个方法就会形成一个url，比如：
+hybridschema://hybridapi?callback=hybrid_1446276509894&param=%7B%22data1%22%3A1%2C%22data2%22%3A2%7D
+
+然后数据会得到返回，一般的格式是这样的：
+```
+{
+  data: {},
+  errno: 0,
+  msg: "success"
+}
+```
+
+code：
+
+```
+window.Hybrid = window.Hybrid || {};
+var bridgePostMsg = function (url) {
+    if ($.os.ios) {
+        window.location = url;
+    } else {
+        var ifr = $('<iframe style="display: none;" src="' + url + '"/>');
+        $('body').append(ifr);
+        setTimeout(function () {
+            ifr.remove();
+        }, 1000)
+    }
+};
+var _getHybridUrl = function (params) {
+    var k, paramStr = '', url = 'scheme://';
+    url += params.tagname + '?t=' + new Date().getTime(); //时间戳，防止url不起效
+    if (params.callback) {
+        url += '&callback=' + params.callback;
+        delete params.callback;
+    }
+    if (params.param) {
+        paramStr = typeof params.param == 'object' ? JSON.stringify(params.param) : params.param;
+        url += '&param=' + encodeURIComponent(paramStr);
+    }
+    return url;
+};
+var requestHybrid = function (params) {
+    //生成唯一执行函数，执行后销毁
+    var tt = (new Date().getTime());
+    var t = 'hybrid_' + tt;
+    var tmpFn;
+
+    //处理有回调的情况
+    if (params.callback) {
+        tmpFn = params.callback;
+        params.callback = t;
+        window.Hybrid[t] = function (data) {
+            tmpFn(data);
+            delete window.Hybrid[t];
+        }
+    }
+    bridgePostMsg(_getHybridUrl(params));
+};
+//获取版本信息，约定APP的navigator.userAgent版本包含版本信息：scheme/xx.xx.xx
+var getHybridInfo = function () {
+    var platform_version = {};
+    var na = navigator.userAgent;
+    var info = na.match(/scheme\/\d\.\d\.\d/);
+
+    if (info && info[0]) {
+        info = info[0].split('/');
+        if (info && info.length == 2) {
+            platform_version.platform = info[0];
+            platform_version.version = info[1];
+        }
+    }
+    return platform_version;
+};
+```
+
+
