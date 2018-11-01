@@ -1,0 +1,68 @@
+### 获取服务器时间
+
+```js
+const BEIJING_TIME_ZONE_OFFSET = -480; 
+// 这里-480 是因为服务端和本地差8小时
+// 因为getTimezoneOffset() return的是以分结尾 480/60 = 8；格林威治时间没有中国东八区
+const JSONP_FUNC = '__jsonp_callback';
+// jsonp 跨越
+let JSONP_IDX = 0;
+
+/**
+ * 将毫秒数读转换为北京时间.
+ * @param   {Number}timestamp
+ * @return  {Date}
+ */
+export function getBeiJingTime(timestamp) {
+  const t = new Date(timestamp);
+  const time = t.getTime();
+  // t.getTimezoneOffset() 本地时间与 GMT 时间之间的时间差，以分钟为单位。
+  const minOffset = t.getTimezoneOffset() - BEIJING_TIME_ZONE_OFFSET;
+  // 返回毫秒数
+  const timeOffset = minOffset * 60000;
+
+  return new Date(time + timeOffset);
+}
+
+/**
+ * 获取服务端时间.
+ * @return  {Promise}
+ */
+export function getServerTime() {
+  const t = new Date().getTime();
+  const idx = JSONP_IDX++;
+  const func = JSONP_FUNC + idx;
+  const jsonpUrl = `//t.alicdn.com/t/gettime?callback=${func}&t=${t}`;
+
+  const doReqeust = new Promise((resolve, reject) => {
+    // window[func] == window.func (true)
+    window[func] = (data) => {
+      // delete 其实是delete关键词 也就是删除xxx
+      delete window[func];
+      if (data && data.time) {
+        resolve(getBeiJingTime(data.time * 1000));
+      } else {
+        reject(new Error('getServerTime: response data has no time property!'));
+      }
+    };
+
+    const script = document.createElement('script');
+    document.head.appendChild(script);
+    script.type = 'text/javascript';
+    script.addEventListener('error', () => {
+      delete window[func];
+      reject();
+    });
+
+    script.src = jsonpUrl;
+  });
+  // 超时设置
+  const timeout = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject(new Error('get cdn time timeout!'));
+    }, 2000);
+  });
+  // race的意思就是竞赛，谁先执行完，就是谁
+  return Promise.race([doReqeust, timeout]);
+}
+```
