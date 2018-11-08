@@ -1,0 +1,65 @@
+---
+layout: post
+title: "vue小技巧"
+date: 2018-11-08
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=98
+image-sm: https://picsum.photos/200/200/?image=98
+---
+
+
+### 在vue项目中可以用到的小技巧
+
+just mark
+
+#### 1.为path配置别名
+
+在开发过程中，我们经常需要引入各种文件，如图片、CSS、JS等，为了避免写很长的相对路径`（../）`，我们可以为不同的目录配置一个别名。
+
+找到`webpack.base.config.js`中的` resolve `配置项，在其` alias `中增加别名，如下:
+
+```js
+resolve:{
+  extensions:['.js', '.vue', '.json'],
+  alias: {
+    'vue$': 'vue/dist/vue.em.js',
+    '@': resolve('src'),
+    'js': resolve('src/assets/js')
+  }
+}
+```
+
+创建一个 CSS 文件，随便写点样式
+
+```css
+.avatar
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+.avatar-img
+  padding 20px
+  border solid 1px #ccc
+  border-radius 5px
+```
+接着，在我们需要引入的文件中就可以直接使用了
+```html
+<template>
+  <div class="avatar">
+    <img class="avatar-img" src="~img/avatar.png" alt="">
+  </div>
+</template>
+
+<script>
+  export default {
+    name: "Home"
+  }
+</script>
+
+<style scoped lang="stylus">
+  @import "~css/avatar";
+</style>
+```
+需要注意的是，如果不是通过 import 引入则需要在别名前加上 ~.
