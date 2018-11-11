@@ -1,0 +1,90 @@
+---
+layout: post
+title: "vue事件处理"
+date: 2018-11-12
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=100
+image-sm: https://picsum.photos/200/200/?image=100
+---
+
+#### vue事件处理
+
+说再多，不如showCode
+
+```
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>vue事件处理</title>
+  </head>
+  <body>
+    <div id="example">
+      <div>1.绑定监听</div>
+      <button @click="test1">test1</button>
+      <button @click="test2('afdasfa')">test2</button>
+      <button @click="test3()">test3</button>
+      <button @click="test3(123,$event)">test4</button>
+      <div>2.事件修饰符</div>
+      <div style="width: 200px;height: 200px; background: red" @click="test5">
+          <div style="width: 100px;height: 100px; background: black" @click.stop="test6"></div>
+      </div>
+
+      <a href="www.baidu.com" @click.prevent="test7">go baidu</a>
+      <div>3.按键修饰符</div>
+      <input type="text" @keyup.enter="test8" />
+    </div>
+
+    <script>
+      new vue({
+        el: '#example',
+        data: {
+          test1(){
+            alert('test1');
+          },
+          test2(msg){
+            alert(msg)
+          },
+          test3(event){
+            alert(event.target.innerHTML)
+          },
+          test4(number,event){
+            alert(number + '----' + event.target.innerHTML)
+          },
+          test5(){
+            alert('outer');
+          },
+          test6(event){
+            //event.stopPropagation(); //原生方法 存在兼容性问题
+            //vue的写法 @click.stop="test6 参考html结构
+  
+            alert('inner');
+            //停止event冒泡
+          },
+          test7(e){
+            // e. preventDefault() //原生方法 存在兼容性问题
+            //@click.prevent="test7"
+            //阻止事件默认值
+            alert('test7');
+          },
+          test8(e){
+            // if(e.keyCode === 13){
+            //   alert(e.target.value);
+            // }  原生方法
+            
+            //vue中 直接这样写
+            //@keyup.enter="test8" 或者 @keyup.13="test8"
+          }
+        },
+        methods: {
+
+        }
+      });
+    </script>
+  </body>
+</html>
+```
