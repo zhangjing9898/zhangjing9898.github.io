@@ -1,0 +1,89 @@
+---
+layout: post
+title: "vue自定义插件"
+date: 2018-11-18
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=106
+image-sm: https://picsum.photos/200/200/?image=106
+---
+
+## vue自定义插件
+
+废话不说多，这篇blog的目的是，学会自己写一个vue的插件，但是我们并不是教你写什么插件，只是简单展示一下，写一个插件相关的语法。
+
+show me code
+
+plugin.html:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vue-plugin</title>
+</head>
+<body>
+  <div id="test">
+    <p v-my-directive="msg"></p>
+  </div>
+  <script src="https://cdn.bootcss.com/vue/2.5.15/vue.js"></script>
+  <script type="text/javascript" src="./plugin.js"></script>
+  <script>
+    // 声明使用插件
+    Vue.use(MyPlugin) //内部会执行 MyPlugin.install(Vue)
+    
+    Vue.myGlobalMethod();
+    const vm = new Vue({
+      el:'#test',
+      data: {
+        msg: 'I want to do something'
+      }
+    })
+    vm.$myMethod()
+  </script>
+</body>
+</html>
+```
+
+plugin.js:
+
+```js
+(function () {
+  // 需要向外暴露的插件对象
+  const MyPlugin = {}
+
+  // 插件对象 必须要有一个install的方法
+    MyPlugin.install = function (Vue, options) {
+      // 1. 添加全局方法或属性
+      Vue.myGlobalMethod = function () {
+        // 逻辑...
+        console.log('Vue 函数对象的方法myGlobalMethod')
+      }
+    
+      // 2. 添加全局资源
+      Vue.directive('my-directive', function(el,binding){
+        el.textContent = binding.value.toUpperCase();
+      })
+    
+      // 3. 注入组件 //这个方法 这里暂时可以不适用
+      Vue.mixin({
+        created: function () {
+          // 逻辑...
+        }
+      })
+    
+      // 4. 添加实例方法
+      Vue.prototype.$myMethod = function (methodOptions) {
+        // 逻辑...
+        console.log('vue实例对象的方法$myMethod')
+      }
+    }
+
+    // 向外暴露
+    window.MyPlugin = MyPlugin;
+})
+```
