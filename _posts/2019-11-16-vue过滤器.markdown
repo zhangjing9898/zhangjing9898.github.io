@@ -1,0 +1,67 @@
+---
+layout: post
+title: "vue过滤器"
+date: 2018-11-16
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=104
+image-sm: https://picsum.photos/200/200/?image=104
+---
+
+## 过滤器
+
+过滤器
+
+
+```HTML
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>vue生命周期</title>
+    <style>
+      .fade-enter-active,.fade-leave-active{
+        transition: opacity 1s;
+      }
+      .fade-enter,.fade-leave-to {
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="example">
+     <h2>显示格式化的日期时间</h2>
+      <p>{{date}}</p>
+      <p>完整版：{{date | dateString}}</p>
+      <p>年月日:{{date | dateString('YYYY-MM-DD'))}}</p>
+      <p>时分秒：{{date | dateString('HH:mm:ss')}}</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script>
+      // 自定义过滤器
+      // 函数对象
+      // name，fn
+      // moment.js
+      //bootCDN
+      Vue.filter('dateString', function(value, format){
+        return moment().format(format || 'YYYY-MM-DD HH:mm:ss')
+      });
+
+      //es6写法
+      Vue.filter('dateString', function(value, format = 'YYYY-MM-DD HH:mm:ss'){
+        return moment().format(format)
+      });
+
+      new vue({
+        el: '#example',
+        data: {
+          date: new Date()
+        },
+      });
+    </script>
+  </body>
+</html>
