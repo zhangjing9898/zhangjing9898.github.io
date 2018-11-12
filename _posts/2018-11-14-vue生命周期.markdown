@@ -1,0 +1,84 @@
+---
+layout: post
+title: "vue生命周期"
+date: 2018-11-14
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=102
+image-sm: https://picsum.photos/200/200/?image=102
+---
+
+## vue生命周期 
+
+- 钩子 也叫 生命周期回调函数
+new vue() -> beforeCreate ->observe data -> init events -> created 
+
+初始化 - 更新 - 储存
+mounted 
+
+```HTML
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>vue生命周期</title>
+  </head>
+  <body>
+    <div id="example">
+      <button @click="destroy">destroy</button>
+      <p v-show="isShow">text</p>
+    </div>
+
+    <script>
+      new vue({
+        el: '#example',
+        data: {
+          isShow: true
+        },
+        //init
+        beforeCreate () {
+          console.log('beforeCreate()')
+        },
+        created () {
+          console.log('created()')
+        },
+        beforeMount(){
+          console.log('beforeMount()')
+        },
+        mounted(){
+          //初始化之后立即调用
+          this.timer = setInterval(() => {
+            this.isShow = !this.isShow
+          },1000)
+        },
+        //update
+        beforeUpdate(){
+          console.log('beforeU');
+          
+        },
+        updated(){
+          console.log('uped');
+          
+        },
+        //death
+        beforeDestroy (){
+          console.log('beforeDestory');
+          clearInterval(this.timer);
+        },
+        destroyed(){
+          console.log('destroyed');
+        },
+        methods: {
+          destroy () {
+            this.$destroy()
+          }
+        }
+        //常用的生命周期 mounted 和 beforeDestroy 
+      });
+    </script>
+  </body>
+</html>
+```
