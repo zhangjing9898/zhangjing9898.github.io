@@ -11,8 +11,6 @@ image-sm: https://picsum.photos/200/200/?image=104
 
 ## 过滤器
 
-过滤器
-
 
 ```HTML
 <!DOCTYPE html>
@@ -21,15 +19,7 @@ image-sm: https://picsum.photos/200/200/?image=104
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>vue生命周期</title>
-    <style>
-      .fade-enter-active,.fade-leave-active{
-        transition: opacity 1s;
-      }
-      .fade-enter,.fade-leave-to {
-        opacity: 0;
-      }
-    </style>
+    <title>vue-filter</title>
   </head>
   <body>
     <div id="example">
