@@ -1,0 +1,54 @@
+---
+layout: post
+title: "vue动画"
+date: 2018-11-15
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=103
+image-sm: https://picsum.photos/200/200/?image=103
+---
+
+## vue动画
+
+vue动画 也就是操作css的transition 和 animation
+
+```HTML
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>vue生命周期</title>
+    <style>
+      .fade-enter-active,.fade-leave-active{
+        transition: opacity 1s;
+      }
+      .fade-enter,.fade-leave-to {
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="example">
+      <button @click="isShow = !isShow">toggle</button>
+      <transition name="fade">
+          <p v-show="isShow">hellow</p>
+      </transition>
+      
+    </div>
+
+    <script>
+      new vue({
+        el: '#example',
+        data() {
+          return {
+            isShow: true
+          }
+        },
+      });
+    </script>
+  </body>
+</html>
+```
