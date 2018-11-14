@@ -1,0 +1,39 @@
+
+
+## 用于记录开发tips
+---
+layout: post
+title: "开发tips"
+date: 2018-11-22
+categories:
+  - Juice
+description: 
+image: https://unsplash.it/2000/1200?image=108
+image-sm: https://picsum.photos/200/200/?image=108
+---
+
+#### 解决公众号关注需要在指定域名下的问题
+
+- 1. 打开支付宝应用助手
+  - 设置 - 支付宝 - 应用中心设置 - 应用助手打开 
+- 2. 打开支付宝中的“应用”
+
+![image.png](https://upload-images.jianshu.io/upload_images/3378252-5483ea9b16f784d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![image.png](https://upload-images.jianshu.io/upload_images/3378252-fd275bca8e00eb56.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+然后把图中的这个开关打开，即可。
+
+#### 如何快速找到线上页面对应的js资源
+
+很多时候，有断点需求，这时候快速找到线上页面对应的js资源就显得尤为重要。
+
+step1：点击sources
+![image.png](https://upload-images.jianshu.io/upload_images/3378252-f98eebfbdd07e016.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+step2：有没有觉得这些很眼熟
+![image.png](https://upload-images.jianshu.io/upload_images/3378252-a98f97927407fe5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+step3：
+![image.png](https://upload-images.jianshu.io/upload_images/3378252-a2fb941d57fca3ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
